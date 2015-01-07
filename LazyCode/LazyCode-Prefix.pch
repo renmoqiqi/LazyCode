@@ -1,17 +1,22 @@
 //
-//  PHPrefix.pch
+//  LazyCode-Prefix.pch
 //  LazyCode
 //
-//  Created by penghe on 15/1/6.
+//  Created by penghe on 15/1/7.
 //  Copyright (c) 2015年 penghe. All rights reserved.
 //
 
-#ifndef LazyCode_PHPrefix_pch
-#define LazyCode_PHPrefix_pch
+#ifndef LazyCode_LazyCode_Prefix_pch
+#define LazyCode_LazyCode_Prefix_pch
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#ifdef __OBJC__
+
+#import <UIKit/UIKit.h>
 
 #import "PHFoundation.h"
+
+#endif
 
 #endif

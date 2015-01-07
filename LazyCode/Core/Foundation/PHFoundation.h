@@ -11,5 +11,6 @@
 
 #import "PHSingleton.h"
 #import "PHDebug.h"
+#import "PHSystermInfo.h"
 
 #endif

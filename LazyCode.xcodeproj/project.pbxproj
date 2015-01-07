@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5115FA7FF388224D608BF1AF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A82ABB40A10EDC06E3ED4C4 /* libPods.a */; };
+		C008678E1A5CBEB400CB8CCB /* PHSystermInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C008678D1A5CBEB400CB8CCB /* PHSystermInfo.m */; };
 		C00D3B5F1A5C314C0025BFAF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C00D3B5E1A5C314C0025BFAF /* ViewController.m */; };
 		C0A5C5111A5C302000E02C9F /* PHBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A5C50E1A5C302000E02C9F /* PHBaseView.m */; };
 		C0A5C5121A5C302000E02C9F /* PHBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A5C5101A5C302000E02C9F /* PHBaseViewController.m */; };
@@ -33,9 +34,12 @@
 
 /* Begin PBXFileReference section */
 		5A82ABB40A10EDC06E3ED4C4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C008678C1A5CBEB400CB8CCB /* PHSystermInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHSystermInfo.h; path = Core/Foundation/PHSystermInfo.h; sourceTree = "<group>"; };
+		C008678D1A5CBEB400CB8CCB /* PHSystermInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHSystermInfo.m; path = Core/Foundation/PHSystermInfo.m; sourceTree = "<group>"; };
+		C008678F1A5CC11400CB8CCB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C00D3B5D1A5C314C0025BFAF /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = LazyCode/MVC/Controller/ViewController.h; sourceTree = SOURCE_ROOT; };
 		C00D3B5E1A5C314C0025BFAF /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = LazyCode/MVC/Controller/ViewController.m; sourceTree = SOURCE_ROOT; };
-		C0A5C50C1A5C25CF00E02C9F /* PHPrefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHPrefix.pch; sourceTree = "<group>"; };
+		C09BE0541A5CC436005FC20F /* LazyCode-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LazyCode-Prefix.pch"; sourceTree = "<group>"; };
 		C0A5C50D1A5C302000E02C9F /* PHBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHBaseView.h; path = BaseClass/PHBaseView.h; sourceTree = "<group>"; };
 		C0A5C50E1A5C302000E02C9F /* PHBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHBaseView.m; path = BaseClass/PHBaseView.m; sourceTree = "<group>"; };
 		C0A5C50F1A5C302000E02C9F /* PHBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHBaseViewController.h; path = BaseClass/PHBaseViewController.h; sourceTree = "<group>"; };
@@ -82,6 +86,7 @@
 		6F29D18521A5F9505CEBA46C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C008678F1A5CC11400CB8CCB /* UIKit.framework */,
 				5A82ABB40A10EDC06E3ED4C4 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -137,7 +142,7 @@
 				C0CFB5491A591E3B002C1589 /* AppDelegate.m */,
 				C0CFB5451A591E3B002C1589 /* Info.plist */,
 				C0CFB5461A591E3B002C1589 /* main.m */,
-				C0A5C50C1A5C25CF00E02C9F /* PHPrefix.pch */,
+				C09BE0541A5CC436005FC20F /* LazyCode-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -235,9 +240,11 @@
 		C0CFB5761A593100002C1589 /* System */ = {
 			isa = PBXGroup;
 			children = (
+				C0A5C5151A5C303B00E02C9F /* PHFoundation.h */,
+				C008678C1A5CBEB400CB8CCB /* PHSystermInfo.h */,
+				C008678D1A5CBEB400CB8CCB /* PHSystermInfo.m */,
 				C0A5C5131A5C303B00E02C9F /* PHDebug.h */,
 				C0A5C5141A5C303B00E02C9F /* PHDebug.m */,
-				C0A5C5151A5C303B00E02C9F /* PHFoundation.h */,
 				C0A5C5161A5C303B00E02C9F /* PHSingleton.h */,
 				C0A5C5171A5C303B00E02C9F /* PHSingleton.m */,
 			);
@@ -395,6 +402,7 @@
 				C0A5C5181A5C303B00E02C9F /* PHDebug.m in Sources */,
 				C0A5C5111A5C302000E02C9F /* PHBaseView.m in Sources */,
 				C0A5C5191A5C303B00E02C9F /* PHSingleton.m in Sources */,
+				C008678E1A5CBEB400CB8CCB /* PHSystermInfo.m in Sources */,
 				C0CFB5471A591E3B002C1589 /* main.m in Sources */,
 				C0A5C5121A5C302000E02C9F /* PHBaseViewController.m in Sources */,
 			);
@@ -519,6 +527,7 @@
 			baseConfigurationReference = E622E63B75DC6ECF6F416547 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LazyCode/LazyCode-Prefix.pch";
 				INFOPLIST_FILE = LazyCode/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -531,6 +540,7 @@
 			baseConfigurationReference = CEF52575EAC6E90F663C42EA /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LazyCode/LazyCode-Prefix.pch";
 				INFOPLIST_FILE = LazyCode/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
