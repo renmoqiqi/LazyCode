@@ -8,8 +8,10 @@
 
 #import "PHSystermInfo.h"
 #import "OpenUDID.h"
-
+#import "PHCommonDefine.h"
 @implementation PHSystermInfo
+
+DEF_SINGLETON(PHSystermInfo)
 
 + (NSString *)OSVersion
 {
