@@ -17,6 +17,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
+    NSString *str = @"Sent when the application is about to move from active to inactive state.";
+    NSUInteger			offset = 0;
+    NSLog(@"%@",[str substringFromIndex:1 untilString:@"i" endOffset:&offset]);
+    NSLog(@"%d",offset);
+    [str REPLACE];
     return YES;
 }
 

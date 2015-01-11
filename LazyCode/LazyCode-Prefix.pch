@@ -16,7 +16,8 @@
 #import <UIKit/UIKit.h>
 
 #import "PHFoundation.h"
-
+#import "Extension.h"
+#import "PHCache.h"
 #endif
 
 #endif

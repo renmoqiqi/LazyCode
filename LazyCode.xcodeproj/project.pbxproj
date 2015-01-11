@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		5115FA7FF388224D608BF1AF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A82ABB40A10EDC06E3ED4C4 /* libPods.a */; };
-		C008678E1A5CBEB400CB8CCB /* PHSystermInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C008678D1A5CBEB400CB8CCB /* PHSystermInfo.m */; };
 		C00D3B5F1A5C314C0025BFAF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C00D3B5E1A5C314C0025BFAF /* ViewController.m */; };
+		C013CFE71A6232310069D868 /* PHSandbox.m in Sources */ = {isa = PBXBuildFile; fileRef = C013CFE61A6232310069D868 /* PHSandbox.m */; };
+		C013CFEB1A6263C20069D868 /* PHUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = C013CFEA1A6263C20069D868 /* PHUserDefaults.m */; };
+		C013CFEE1A6265920069D868 /* PHKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = C013CFED1A6265920069D868 /* PHKeychain.m */; };
+		C013CFF11A6268FE0069D868 /* PHFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C013CFF01A6268FE0069D868 /* PHFileCache.m */; };
+		C013CFF41A626A730069D868 /* PHMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C013CFF31A626A730069D868 /* PHMemoryCache.m */; };
 		C0A5C5111A5C302000E02C9F /* PHBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A5C50E1A5C302000E02C9F /* PHBaseView.m */; };
 		C0A5C5121A5C302000E02C9F /* PHBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A5C5101A5C302000E02C9F /* PHBaseViewController.m */; };
 		C0CFB5471A591E3B002C1589 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CFB5461A591E3B002C1589 /* main.m */; };
@@ -18,6 +22,11 @@
 		C0CFB5521A591E3B002C1589 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0CFB5511A591E3B002C1589 /* Images.xcassets */; };
 		C0CFB5551A591E3B002C1589 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0CFB5531A591E3B002C1589 /* LaunchScreen.xib */; };
 		C0CFB5611A591E3C002C1589 /* LazyCodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CFB5601A591E3C002C1589 /* LazyCodeTests.m */; };
+		C0F85B101A5FB3D700DC8901 /* PHSystermInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F85B0D1A5FB3D700DC8901 /* PHSystermInfo.m */; };
+		C0F85B131A5FB3E700DC8901 /* NSString+PH.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F85B121A5FB3E700DC8901 /* NSString+PH.m */; };
+		C0F85B161A5FB69100DC8901 /* NSData+PH.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F85B151A5FB69100DC8901 /* NSData+PH.m */; };
+		C0F85B191A5FBDD500DC8901 /* NSObject+PH.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F85B181A5FBDD500DC8901 /* NSObject+PH.m */; };
+		C0F85B1C1A5FBECD00DC8901 /* NSDictionary+PH.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F85B1B1A5FBECD00DC8901 /* NSDictionary+PH.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,18 +41,26 @@
 
 /* Begin PBXFileReference section */
 		5A82ABB40A10EDC06E3ED4C4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		C008678C1A5CBEB400CB8CCB /* PHSystermInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHSystermInfo.h; path = Core/Foundation/PHSystermInfo.h; sourceTree = "<group>"; };
-		C008678D1A5CBEB400CB8CCB /* PHSystermInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHSystermInfo.m; path = Core/Foundation/PHSystermInfo.m; sourceTree = "<group>"; };
-		C008678F1A5CC11400CB8CCB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C00D3B5D1A5C314C0025BFAF /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = LazyCode/MVC/Controller/ViewController.h; sourceTree = SOURCE_ROOT; };
 		C00D3B5E1A5C314C0025BFAF /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = LazyCode/MVC/Controller/ViewController.m; sourceTree = SOURCE_ROOT; };
-		C059B4D01A5D5CF30012586F /* PHCommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHCommonDefine.h; sourceTree = "<group>"; };
+		C013CFE31A6231390069D868 /* Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Extension.h; path = Core/Foundation/Extension/Extension.h; sourceTree = "<group>"; };
+		C013CFE41A6231880069D868 /* PHCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHCache.h; path = Core/Cache/PHCache.h; sourceTree = "<group>"; };
+		C013CFE51A6232310069D868 /* PHSandbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHSandbox.h; path = Core/Foundation/System/PHSandbox.h; sourceTree = "<group>"; };
+		C013CFE61A6232310069D868 /* PHSandbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHSandbox.m; path = Core/Foundation/System/PHSandbox.m; sourceTree = "<group>"; };
+		C013CFE81A6237A90069D868 /* PHCacheProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHCacheProtocol.h; path = Core/Cache/PHCacheProtocol.h; sourceTree = "<group>"; };
+		C013CFE91A6263C20069D868 /* PHUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHUserDefaults.h; path = Core/Cache/PHUserDefaults.h; sourceTree = "<group>"; };
+		C013CFEA1A6263C20069D868 /* PHUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHUserDefaults.m; path = Core/Cache/PHUserDefaults.m; sourceTree = "<group>"; };
+		C013CFEC1A6265920069D868 /* PHKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHKeychain.h; path = Core/Cache/PHKeychain.h; sourceTree = "<group>"; };
+		C013CFED1A6265920069D868 /* PHKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHKeychain.m; path = Core/Cache/PHKeychain.m; sourceTree = "<group>"; };
+		C013CFEF1A6268FE0069D868 /* PHFileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHFileCache.h; path = Core/Cache/PHFileCache.h; sourceTree = "<group>"; };
+		C013CFF01A6268FE0069D868 /* PHFileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHFileCache.m; path = Core/Cache/PHFileCache.m; sourceTree = "<group>"; };
+		C013CFF21A626A730069D868 /* PHMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHMemoryCache.h; path = Core/Cache/PHMemoryCache.h; sourceTree = "<group>"; };
+		C013CFF31A626A730069D868 /* PHMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHMemoryCache.m; path = Core/Cache/PHMemoryCache.m; sourceTree = "<group>"; };
 		C09BE0541A5CC436005FC20F /* LazyCode-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LazyCode-Prefix.pch"; sourceTree = "<group>"; };
 		C0A5C50D1A5C302000E02C9F /* PHBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHBaseView.h; path = BaseClass/PHBaseView.h; sourceTree = "<group>"; };
 		C0A5C50E1A5C302000E02C9F /* PHBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHBaseView.m; path = BaseClass/PHBaseView.m; sourceTree = "<group>"; };
 		C0A5C50F1A5C302000E02C9F /* PHBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHBaseViewController.h; path = BaseClass/PHBaseViewController.h; sourceTree = "<group>"; };
 		C0A5C5101A5C302000E02C9F /* PHBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHBaseViewController.m; path = BaseClass/PHBaseViewController.m; sourceTree = "<group>"; };
-		C0A5C5151A5C303B00E02C9F /* PHFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHFoundation.h; path = Core/Foundation/PHFoundation.h; sourceTree = "<group>"; };
 		C0CFB5411A591E3B002C1589 /* LazyCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LazyCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0CFB5451A591E3B002C1589 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0CFB5461A591E3B002C1589 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -55,6 +72,18 @@
 		C0CFB55A1A591E3C002C1589 /* LazyCodeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LazyCodeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0CFB55F1A591E3C002C1589 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0CFB5601A591E3C002C1589 /* LazyCodeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LazyCodeTests.m; sourceTree = "<group>"; };
+		C0F85B0C1A5FB3D700DC8901 /* PHSystermInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHSystermInfo.h; path = Core/Foundation/System/PHSystermInfo.h; sourceTree = "<group>"; };
+		C0F85B0D1A5FB3D700DC8901 /* PHSystermInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHSystermInfo.m; path = Core/Foundation/System/PHSystermInfo.m; sourceTree = "<group>"; };
+		C0F85B0E1A5FB3D700DC8901 /* PHCommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHCommonDefine.h; path = Core/Foundation/System/PHCommonDefine.h; sourceTree = "<group>"; };
+		C0F85B0F1A5FB3D700DC8901 /* PHFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHFoundation.h; path = Core/Foundation/System/PHFoundation.h; sourceTree = "<group>"; };
+		C0F85B111A5FB3E700DC8901 /* NSString+PH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+PH.h"; path = "Core/Foundation/Extension/NSString+PH.h"; sourceTree = "<group>"; };
+		C0F85B121A5FB3E700DC8901 /* NSString+PH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+PH.m"; path = "Core/Foundation/Extension/NSString+PH.m"; sourceTree = "<group>"; };
+		C0F85B141A5FB69100DC8901 /* NSData+PH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+PH.h"; path = "Core/Foundation/Extension/NSData+PH.h"; sourceTree = "<group>"; };
+		C0F85B151A5FB69100DC8901 /* NSData+PH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+PH.m"; path = "Core/Foundation/Extension/NSData+PH.m"; sourceTree = "<group>"; };
+		C0F85B171A5FBDD500DC8901 /* NSObject+PH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+PH.h"; path = "Core/Foundation/Extension/NSObject+PH.h"; sourceTree = "<group>"; };
+		C0F85B181A5FBDD500DC8901 /* NSObject+PH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+PH.m"; path = "Core/Foundation/Extension/NSObject+PH.m"; sourceTree = "<group>"; };
+		C0F85B1A1A5FBECD00DC8901 /* NSDictionary+PH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+PH.h"; path = "Core/Foundation/Extension/NSDictionary+PH.h"; sourceTree = "<group>"; };
+		C0F85B1B1A5FBECD00DC8901 /* NSDictionary+PH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+PH.m"; path = "Core/Foundation/Extension/NSDictionary+PH.m"; sourceTree = "<group>"; };
 		CEF52575EAC6E90F663C42EA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E622E63B75DC6ECF6F416547 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,7 +110,6 @@
 		6F29D18521A5F9505CEBA46C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C008678F1A5CC11400CB8CCB /* UIKit.framework */,
 				5A82ABB40A10EDC06E3ED4C4 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -94,6 +122,22 @@
 				CEF52575EAC6E90F663C42EA /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C013CFF51A626E9A0069D868 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				C013CFF61A626EBD0069D868 /* Extension */,
+			);
+			name = UIKit;
+			path = Core/UIKit;
+			sourceTree = "<group>";
+		};
+		C013CFF61A626EBD0069D868 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		C0CFB5381A591E3B002C1589 = {
@@ -195,6 +239,7 @@
 		C0CFB5711A592DF4002C1589 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				C013CFF51A626E9A0069D868 /* UIKit */,
 				C0CFB5741A593053002C1589 /* Foundation */,
 				C0CFB5731A592ECC002C1589 /* Network */,
 				C0CFB5721A592EC5002C1589 /* Cache */,
@@ -205,6 +250,16 @@
 		C0CFB5721A592EC5002C1589 /* Cache */ = {
 			isa = PBXGroup;
 			children = (
+				C013CFE41A6231880069D868 /* PHCache.h */,
+				C013CFE81A6237A90069D868 /* PHCacheProtocol.h */,
+				C013CFE91A6263C20069D868 /* PHUserDefaults.h */,
+				C013CFEA1A6263C20069D868 /* PHUserDefaults.m */,
+				C013CFEC1A6265920069D868 /* PHKeychain.h */,
+				C013CFED1A6265920069D868 /* PHKeychain.m */,
+				C013CFEF1A6268FE0069D868 /* PHFileCache.h */,
+				C013CFF01A6268FE0069D868 /* PHFileCache.m */,
+				C013CFF21A626A730069D868 /* PHMemoryCache.h */,
+				C013CFF31A626A730069D868 /* PHMemoryCache.m */,
 			);
 			name = Cache;
 			sourceTree = "<group>";
@@ -228,6 +283,15 @@
 		C0CFB5751A59308A002C1589 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				C0F85B111A5FB3E700DC8901 /* NSString+PH.h */,
+				C0F85B121A5FB3E700DC8901 /* NSString+PH.m */,
+				C0F85B141A5FB69100DC8901 /* NSData+PH.h */,
+				C0F85B151A5FB69100DC8901 /* NSData+PH.m */,
+				C0F85B171A5FBDD500DC8901 /* NSObject+PH.h */,
+				C0F85B181A5FBDD500DC8901 /* NSObject+PH.m */,
+				C0F85B1A1A5FBECD00DC8901 /* NSDictionary+PH.h */,
+				C0F85B1B1A5FBECD00DC8901 /* NSDictionary+PH.m */,
+				C013CFE31A6231390069D868 /* Extension.h */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -235,10 +299,12 @@
 		C0CFB5761A593100002C1589 /* System */ = {
 			isa = PBXGroup;
 			children = (
-				C0A5C5151A5C303B00E02C9F /* PHFoundation.h */,
-				C059B4D01A5D5CF30012586F /* PHCommonDefine.h */,
-				C008678C1A5CBEB400CB8CCB /* PHSystermInfo.h */,
-				C008678D1A5CBEB400CB8CCB /* PHSystermInfo.m */,
+				C0F85B0C1A5FB3D700DC8901 /* PHSystermInfo.h */,
+				C0F85B0D1A5FB3D700DC8901 /* PHSystermInfo.m */,
+				C0F85B0E1A5FB3D700DC8901 /* PHCommonDefine.h */,
+				C0F85B0F1A5FB3D700DC8901 /* PHFoundation.h */,
+				C013CFE51A6232310069D868 /* PHSandbox.h */,
+				C013CFE61A6232310069D868 /* PHSandbox.m */,
 			);
 			name = System;
 			sourceTree = "<group>";
@@ -390,11 +456,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				C00D3B5F1A5C314C0025BFAF /* ViewController.m in Sources */,
+				C0F85B131A5FB3E700DC8901 /* NSString+PH.m in Sources */,
+				C013CFE71A6232310069D868 /* PHSandbox.m in Sources */,
 				C0CFB54A1A591E3B002C1589 /* AppDelegate.m in Sources */,
 				C0A5C5111A5C302000E02C9F /* PHBaseView.m in Sources */,
-				C008678E1A5CBEB400CB8CCB /* PHSystermInfo.m in Sources */,
+				C0F85B1C1A5FBECD00DC8901 /* NSDictionary+PH.m in Sources */,
+				C0F85B161A5FB69100DC8901 /* NSData+PH.m in Sources */,
 				C0CFB5471A591E3B002C1589 /* main.m in Sources */,
 				C0A5C5121A5C302000E02C9F /* PHBaseViewController.m in Sources */,
+				C0F85B191A5FBDD500DC8901 /* NSObject+PH.m in Sources */,
+				C013CFF11A6268FE0069D868 /* PHFileCache.m in Sources */,
+				C013CFEB1A6263C20069D868 /* PHUserDefaults.m in Sources */,
+				C0F85B101A5FB3D700DC8901 /* PHSystermInfo.m in Sources */,
+				C013CFF41A626A730069D868 /* PHMemoryCache.m in Sources */,
+				C013CFEE1A6265920069D868 /* PHKeychain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
