@@ -147,7 +147,6 @@ DEF_SINGLETON( PHUserDefaults )
     id value = [[PHUserDefaults sharedInstance] objectForKey:key];
     if ( value )
     {
-        //return [self objectFromAny:value];
         return value;
     }
 
@@ -165,17 +164,7 @@ DEF_SINGLETON( PHUserDefaults )
         return;
 
     key = [self persistenceKey:key];
-    /*
-     NSString * value = [obj objectToString];
-     if ( value && value.length )
-     {
-     [[XYUserDefaults sharedInstance] setObject:value forKey:key];
-     }
-     else
-     {
-     [[XYUserDefaults sharedInstance] removeObjectForKey:key];
-     }
-     */
+
     if (obj) {
         [[PHUserDefaults sharedInstance] setObject:obj forKey:key];
     }else {

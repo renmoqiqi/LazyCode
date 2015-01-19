@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "PHNetWorkClient.h"
 @interface AppDelegate ()
 
 @end
@@ -17,12 +17,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    PHLog(@"%@",[[PHSandbox libCachePath]stringByAppendingPathComponent:@"QQ_V3.0.0.dmg"]);
+    [PHNetWorkClient sharedClient].requestTimeoutInterval = 2.0;
+    [[PHNetWorkClient sharedClient] GET:@"http://dl_dir.qq.com/qqfile/qq/QQforMac/QQ_V3.0.0.dmg" param:nil filePath:[[PHSandbox libCachePath]stringByAppendingPathComponent:@"QQ_V3.0.0.dmg"] shouldResume:YES downloadProgress:^(AFDownloadRequestOperation *operation, NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
+    NSLog(@"%ld",(long)bytesRead);
 
-    NSString *str = @"Sent when the application is about to move from active to inactive state.";
-    NSUInteger			offset = 0;
-    NSLog(@"%@",[str substringFromIndex:1 untilString:@"i" endOffset:&offset]);
-    NSLog(@"%d",offset);
-    [str REPLACE];
+} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    PHLog(nil, @"Download succeed", @"ok");
+
+} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    PHLog(nil, @"Download failed",  @"ok");
+
+}];
+
     return YES;
 }
 
