@@ -16,7 +16,7 @@
 @implementation PHNetWorkClient
 #pragma mark
 //API地址
-static NSString * const kClientAPIBaseURLString = @"";
+static NSString * const kClientAPIBaseURLString = @"www.baidu.com";
 static PHNetWorkClient *__helper = nil;
 
 #pragma mark
@@ -29,10 +29,10 @@ static PHNetWorkClient *__helper = nil;
 - (void)paramsSetting
 {
     if (self.requestTimeoutInterval) {
-       __helper.requestSerializer.timeoutInterval = self.requestTimeoutInterval;
+        __helper.requestSerializer.timeoutInterval = self.requestTimeoutInterval;
     }
     if (self.SerializerType == PHRequestSerializerTypeHTTP) {
-       __helper.requestSerializer = [AFHTTPRequestSerializer serializer];
+        __helper.requestSerializer = [AFHTTPRequestSerializer serializer];
     }
     else
     {
@@ -46,9 +46,13 @@ static PHNetWorkClient *__helper = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         __helper = [[self alloc] initWithBaseURL:[NSURL URLWithString:[[self class] baseUrl]]];
+        if ([[[self class] baseUrl] notEmpty]) {
+            [__helper networkStateChange];
+        }
     });
     return __helper;
 }
+
 
 #pragma mark
 - (AFHTTPRequestOperation *)GET:(NSString *)urlPath
@@ -78,33 +82,33 @@ static PHNetWorkClient *__helper = nil;
                                     success:(BlockHTTPRequestSuccess)success
                                     failure:(BlockHTTPRequestFailure)failure;
 {
-        [self paramsSetting];
-        switch (requestType) {
-            case PHHttpRequestGet:
-            {
-               return [__helper GET:urlPath parameters:parameters success:success failure:failure];
-            }
-                break;
-            case PHHttpRequestPost:
-            {
-               return [__helper POST:urlPath parameters:parameters success:success failure:failure];
-            }
-                break;
-            case PHHttpRequestDelete:
-            {
-               return [__helper DELETE:urlPath parameters:parameters success:success failure:failure];
-            }
-                break;
-            case PHHttpRequestPut:
-            {
-               return [__helper PUT:urlPath parameters:parameters success:success failure:false];
-            }
-                break;
-
-            default:
-                break;
-
+    [self paramsSetting];
+    switch (requestType) {
+        case PHHttpRequestGet:
+        {
+            return [__helper GET:urlPath parameters:parameters success:success failure:failure];
         }
+            break;
+        case PHHttpRequestPost:
+        {
+            return [__helper POST:urlPath parameters:parameters success:success failure:failure];
+        }
+            break;
+        case PHHttpRequestDelete:
+        {
+            return [__helper DELETE:urlPath parameters:parameters success:success failure:failure];
+        }
+            break;
+        case PHHttpRequestPut:
+        {
+            return [__helper PUT:urlPath parameters:parameters success:success failure:false];
+        }
+            break;
+
+        default:
+            break;
+
+    }
 }
 #pragma mark
 #pragma mark -- urlTools
@@ -143,7 +147,7 @@ static PHNetWorkClient *__helper = nil;
     }
 }
 
-#pragma mark 
+#pragma mark
 - (AFHTTPRequestOperation *)POST:(NSString *)urlPath
                            param:(NSDictionary *)params
                             file:(NSData *)file
@@ -156,8 +160,8 @@ static PHNetWorkClient *__helper = nil;
     [self paramsSetting];
     AFHTTPRequestOperation *operation;
     operation = [__helper POST:urlPath parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-       [formData appendPartWithFileData:file name:formKey fileName:imageName mimeType:@"image/png"];
-        
+        [formData appendPartWithFileData:file name:formKey fileName:imageName mimeType:@"image/png"];
+
     } success:success failure:failure];
 
     [operation setUploadProgressBlock:uploadProgress];
@@ -171,14 +175,14 @@ static PHNetWorkClient *__helper = nil;
                          failure:(BlockHTTPRequestFailure)failure
 {
     [self paramsSetting];
-  __block  AFHTTPRequestOperation *operation;
+    __block  AFHTTPRequestOperation *operation;
     NSArray *imageKeyArray = params.allKeys;
     [imageKeyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         operation = [__helper POST:urlPath parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             [formData appendPartWithFileData:fileDictionary[obj] name:obj fileName:[NSString stringWithFormat:@"%dImage",idx] mimeType:@"image/png"];
 
         } success:success failure:failure];
-        
+
     }];
     [operation setUploadProgressBlock:uploadProgress];
     return operation;
@@ -206,5 +210,50 @@ static PHNetWorkClient *__helper = nil;
 
     [__helper.operationQueue addOperation:operation];
     return operation;
+}
+
+#pragma mark 
+//监控网络变化
+- (void)networkStateChange
+{
+    // 1.获得网络监控的管理者
+    AFNetworkReachabilityManager *reachabilityManager = __helper.reachabilityManager;
+
+    // 2.设置网络状态改变后的处理
+    [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        // 当网络状态改变了, 就会调用这个block
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown: // 未知网络
+                PHLog(@"未知网络");
+                break;
+
+            case AFNetworkReachabilityStatusNotReachable: // 没有网络(断网)
+                PHLog(@"没有网络(断网)");
+                break;
+
+            case AFNetworkReachabilityStatusReachableViaWWAN: // 手机自带网络
+                if(self.wifiOnlyMode)
+                {
+                    __helper.operationQueue.maxConcurrentOperationCount = 0;
+
+                }
+                else
+                {
+                    __helper.operationQueue.maxConcurrentOperationCount = 2;
+
+                }
+                PHLog(@"手机自带网络");
+                break;
+
+            case AFNetworkReachabilityStatusReachableViaWiFi: // WIFI
+                __helper.operationQueue.maxConcurrentOperationCount = 6;
+
+                PHLog(@"WIFI");
+                break;
+        }
+    }];
+    
+    // 3.开始监控
+    [reachabilityManager startMonitoring];
 }
 @end

@@ -52,6 +52,10 @@ typedef void (^BlockHTTPRequestUploadProgress)(NSUInteger bytesWritten, long lon
 //发送类型枚举
 @property (nonatomic, assign) PHRequestSerializerType SerializerType;
 
+//手机网络如果设置YES则不请求数据
+@property (assign, nonatomic) BOOL wifiOnlyMode;
+
+
 //单例
 + (instancetype)sharedClient;
 
@@ -153,8 +157,10 @@ typedef void (^BlockHTTPRequestUploadProgress)(NSUInteger bytesWritten, long lon
  *  @param downloadProgress   下载进度回调
  *  @param param              一些其他参数
  *  @param success            成功回调
+ *  @param filePath           断点续传临时文件地址
+ *  @param shouldResume       是否支持断点续传
  *  @param failure            失败回调
- *
+
  *  @return 已发送的request 可以为nil
  */
 - (AFHTTPRequestOperation *)GET:(NSString *)urlPath
@@ -164,5 +170,8 @@ typedef void (^BlockHTTPRequestUploadProgress)(NSUInteger bytesWritten, long lon
                downloadProgress:(AFDownloadProgressBlock)downloadProgress
                         success:(BlockHTTPRequestSuccess)success
                         failure:(BlockHTTPRequestFailure)failure;
+
+#pragma mark  
+
 
 @end
