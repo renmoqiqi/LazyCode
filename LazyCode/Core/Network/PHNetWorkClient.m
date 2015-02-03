@@ -17,6 +17,7 @@
 #pragma mark
 //API地址
 static NSString * const kClientAPIBaseURLString = @"www.baidu.com";
+static NSString * const AppBuddleID = @"mobi.wonders.apps.ios.iSmile";
 static PHNetWorkClient *__helper = nil;
 
 #pragma mark
@@ -38,7 +39,6 @@ static PHNetWorkClient *__helper = nil;
     {
         __helper.requestSerializer = [AFJSONRequestSerializer serializer];
     }
-    __helper.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil];
 
 }
 + (instancetype)sharedClient
@@ -48,6 +48,7 @@ static PHNetWorkClient *__helper = nil;
         __helper = [[self alloc] initWithBaseURL:[NSURL URLWithString:[[self class] baseUrl]]];
         if ([[[self class] baseUrl] notEmpty]) {
             [__helper networkStateChange];
+
         }
     });
     return __helper;
@@ -219,34 +220,42 @@ static PHNetWorkClient *__helper = nil;
     // 1.获得网络监控的管理者
     AFNetworkReachabilityManager *reachabilityManager = __helper.reachabilityManager;
 
+    NSOperationQueue *operationQueue = __helper.operationQueue;
     // 2.设置网络状态改变后的处理
     [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         // 当网络状态改变了, 就会调用这个block
         switch (status) {
             case AFNetworkReachabilityStatusUnknown: // 未知网络
                 PHLog(@"未知网络");
+                [operationQueue setSuspended:YES];
+
                 break;
 
             case AFNetworkReachabilityStatusNotReachable: // 没有网络(断网)
                 PHLog(@"没有网络(断网)");
+                [operationQueue setSuspended:YES];
                 break;
 
             case AFNetworkReachabilityStatusReachableViaWWAN: // 手机自带网络
                 if(self.wifiOnlyMode)
                 {
-                    __helper.operationQueue.maxConcurrentOperationCount = 0;
+                    operationQueue.maxConcurrentOperationCount = 0;
+                    [operationQueue setSuspended:YES];
 
                 }
                 else
                 {
-                    __helper.operationQueue.maxConcurrentOperationCount = 2;
+                    operationQueue.maxConcurrentOperationCount = 2;
+                    [operationQueue setSuspended:NO];
 
                 }
+
                 PHLog(@"手机自带网络");
                 break;
 
             case AFNetworkReachabilityStatusReachableViaWiFi: // WIFI
-                __helper.operationQueue.maxConcurrentOperationCount = 6;
+                operationQueue.maxConcurrentOperationCount = 6;
+                [operationQueue setSuspended:NO];
 
                 PHLog(@"WIFI");
                 break;
@@ -255,5 +264,68 @@ static PHNetWorkClient *__helper = nil;
     
     // 3.开始监控
     [reachabilityManager startMonitoring];
+}
+
+#pragma mark
+//cache
+- (AFHTTPRequestOperation *)GET:(NSString *)urlPath
+                          param:(NSDictionary *)params
+                withCachePolicy:(PHURLCachePolicy)cachePolicy
+                        onCache:(BlockHTTPRequestCache)onCache
+                        success:(BlockHTTPRequestSuccess)success
+                        failure:(BlockHTTPRequestFailure)failure
+{
+    NSURLRequest *request;
+    switch (cachePolicy) {
+        case 0:
+            request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlPath] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:self.requestTimeoutInterval];
+            break;
+
+        case 1:
+            request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlPath] cachePolicy:NSURLRequestReturnCacheDataDontLoad timeoutInterval:self.requestTimeoutInterval];
+            break;
+        case 2:
+            if ([self checkCacheTime] == YES) {
+                request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlPath] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:self.requestTimeoutInterval];
+            }
+            else
+            {
+                request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlPath] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:self.requestTimeoutInterval];
+            }
+
+            break;
+            
+        default:
+            break;
+    }
+
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [__helper.operationQueue addOperation:operation];
+    return operation;
+}
+//文件创建时间
+- (int)cacheFileDuration {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    // get file attribute
+    NSError *attributesRetrievalError = nil;
+    NSString *path = nil;
+    path = [NSString stringWithFormat:@"%@/%@",[PHSandbox libCachePath],AppBuddleID];
+    NSDictionary *attributes = [fileManager attributesOfItemAtPath:path
+                                                             error:&attributesRetrievalError];
+    if (!attributes) {
+        return -1;
+    }
+    int seconds = -[[attributes fileModificationDate] timeIntervalSinceNow];
+    return seconds;
+}
+//检测缓存时间是否过期
+- (BOOL)checkCacheTime
+{
+    // check cache time
+    int seconds = [self cacheFileDuration];
+    if (seconds < 0 || seconds > [self cacheTimeInSeconds]) {
+        return NO;
+    }
+    return YES;
 }
 @end

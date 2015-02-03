@@ -381,6 +381,7 @@
 				TargetAttributes = {
 					C0CFB5401A591E3B002C1589 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = TFEY5JV6HS;
 					};
 					C0CFB5591A591E3C002C1589 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -604,11 +605,14 @@
 			baseConfigurationReference = E622E63B75DC6ECF6F416547 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LazyCode/LazyCode-Prefix.pch";
 				INFOPLIST_FILE = LazyCode/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "39c31018-202f-466b-9ff9-ac5e44d28336";
 			};
 			name = Debug;
 		};
@@ -617,11 +621,14 @@
 			baseConfigurationReference = CEF52575EAC6E90F663C42EA /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LazyCode/LazyCode-Prefix.pch";
 				INFOPLIST_FILE = LazyCode/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "39c31018-202f-466b-9ff9-ac5e44d28336";
 			};
 			name = Release;
 		};
