@@ -23,6 +23,7 @@
 		C0CFB5521A591E3B002C1589 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0CFB5511A591E3B002C1589 /* Images.xcassets */; };
 		C0CFB5551A591E3B002C1589 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0CFB5531A591E3B002C1589 /* LaunchScreen.xib */; };
 		C0CFB5611A591E3C002C1589 /* LazyCodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CFB5601A591E3C002C1589 /* LazyCodeTests.m */; };
+		C0DA0B221A80BF08003C6A73 /* PHAutoCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DA0B211A80BF08003C6A73 /* PHAutoCoding.m */; };
 		C0E294D31A637B0600BDD7B9 /* PHNetWorkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E294D21A637B0600BDD7B9 /* PHNetWorkClient.m */; };
 		C0F85B101A5FB3D700DC8901 /* PHSystermInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F85B0D1A5FB3D700DC8901 /* PHSystermInfo.m */; };
 		C0F85B131A5FB3E700DC8901 /* NSString+PH.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F85B121A5FB3E700DC8901 /* NSString+PH.m */; };
@@ -76,6 +77,8 @@
 		C0CFB55A1A591E3C002C1589 /* LazyCodeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LazyCodeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0CFB55F1A591E3C002C1589 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0CFB5601A591E3C002C1589 /* LazyCodeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LazyCodeTests.m; sourceTree = "<group>"; };
+		C0DA0B201A80BF08003C6A73 /* PHAutoCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHAutoCoding.h; sourceTree = "<group>"; };
+		C0DA0B211A80BF08003C6A73 /* PHAutoCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHAutoCoding.m; sourceTree = "<group>"; };
 		C0E294D11A637B0600BDD7B9 /* PHNetWorkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHNetWorkClient.h; path = Core/Network/PHNetWorkClient.h; sourceTree = "<group>"; };
 		C0E294D21A637B0600BDD7B9 /* PHNetWorkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHNetWorkClient.m; path = Core/Network/PHNetWorkClient.m; sourceTree = "<group>"; };
 		C0F85B0C1A5FB3D700DC8901 /* PHSystermInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHSystermInfo.h; path = Core/Foundation/System/PHSystermInfo.h; sourceTree = "<group>"; };
@@ -266,6 +269,8 @@
 				C013CFF01A6268FE0069D868 /* PHFileCache.m */,
 				C013CFF21A626A730069D868 /* PHMemoryCache.h */,
 				C013CFF31A626A730069D868 /* PHMemoryCache.m */,
+				C0DA0B201A80BF08003C6A73 /* PHAutoCoding.h */,
+				C0DA0B211A80BF08003C6A73 /* PHAutoCoding.m */,
 			);
 			name = Cache;
 			sourceTree = "<group>";
@@ -482,6 +487,7 @@
 				C0F85B101A5FB3D700DC8901 /* PHSystermInfo.m in Sources */,
 				C0E294D31A637B0600BDD7B9 /* PHNetWorkClient.m in Sources */,
 				C013CFF41A626A730069D868 /* PHMemoryCache.m in Sources */,
+				C0DA0B221A80BF08003C6A73 /* PHAutoCoding.m in Sources */,
 				C013CFEE1A6265920069D868 /* PHKeychain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

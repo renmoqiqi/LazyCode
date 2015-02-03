@@ -18,4 +18,7 @@ AS_SINGLETON( PHFileCache );
 
 - (NSString *)fileNameForKey:(NSString *)key;
 
+//自定义类的加载 自动序列化里面的对象
+- (id)objectForKey:(id)key objectClass:(Class)aClass;
+
 @end

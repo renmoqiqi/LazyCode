@@ -14,5 +14,6 @@
 #import "PHKeychain.h"
 #import "PHFileCache.h"
 #import "PHMemoryCache.h"
+#import "PHAutoCoding.h"
 
 #endif

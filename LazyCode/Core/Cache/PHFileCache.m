@@ -64,6 +64,19 @@ DEF_SINGLETON( PHFileCache );
     return [pathName stringByAppendingString:key];
 }
 
+- (id)objectForKey:(id)key objectClass:(Class)aClass
+{
+    if (aClass != nil)
+    {
+        // 用的是AutoCoding里的方法
+        return [aClass objectWithContentsOfFile:[self fileNameForKey:key]];
+    }
+    else
+    {
+        return [self objectForKey:key];
+    }
+}
+
 - (BOOL)hasObjectForKey:(id)key
 {
     return [_fileManager fileExistsAtPath:[self fileNameForKey:key]];
@@ -82,13 +95,18 @@ DEF_SINGLETON( PHFileCache );
     }
     else
     {
-        NSData * data = [object asNSData];
-        if ( data )
-        {
-            [data writeToFile:[self fileNameForKey:key]
-                      options:NSDataWritingAtomic
-                        error:NULL];
-        }
+        //        NSData * data = [object asNSData];
+        //        if ( data )
+        //        {
+        //            [data writeToFile:[self fileNameForKey:key]
+        //                      options:NSDataWritingAtomic
+        //                        error:NULL];
+        //        }
+
+        // 用的是AutoCoding里的方法
+
+        [object writeToFile:[self fileNameForKey:key] atomically:YES];
+        
     }
 }
 
