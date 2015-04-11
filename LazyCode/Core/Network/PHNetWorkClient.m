@@ -15,9 +15,13 @@
 
 @implementation PHNetWorkClient
 #pragma mark
+
 //API地址
 static NSString * const kClientAPIBaseURLString = @"www.baidu.com";
 static NSString * const AppBuddleID = @"mobi.wonders.apps.ios.iSmile";
+//默认超时时间
+static const NSTimeInterval KDefaultTimeout = 10.0f;
+
 static PHNetWorkClient *__helper = nil;
 
 #pragma mark
@@ -29,9 +33,17 @@ static PHNetWorkClient *__helper = nil;
 //一些其他设置
 - (void)paramsSetting
 {
-    if (self.requestTimeoutInterval) {
-        __helper.requestSerializer.timeoutInterval = self.requestTimeoutInterval;
+    //超时时间
+    if (self.requestTimeoutInterval == 0) {
+        __helper.requestSerializer.timeoutInterval = KDefaultTimeout;
+
     }
+    else
+    {
+        __helper.requestSerializer.timeoutInterval = self.requestTimeoutInterval;
+
+    }
+    //请求类型
     if (self.SerializerType == PHRequestSerializerTypeHTTP) {
         __helper.requestSerializer = [AFHTTPRequestSerializer serializer];
     }
@@ -39,6 +51,8 @@ static PHNetWorkClient *__helper = nil;
     {
         __helper.requestSerializer = [AFJSONRequestSerializer serializer];
     }
+    //网络设置,默认有网
+    self.online = YES;
 
 }
 + (instancetype)sharedClient
@@ -228,12 +242,13 @@ static PHNetWorkClient *__helper = nil;
             case AFNetworkReachabilityStatusUnknown: // 未知网络
                 PHLog(@"未知网络");
                 [operationQueue setSuspended:YES];
-
+                self.online = YES;
                 break;
 
             case AFNetworkReachabilityStatusNotReachable: // 没有网络(断网)
                 PHLog(@"没有网络(断网)");
                 [operationQueue setSuspended:YES];
+                self.online = NO;
                 break;
 
             case AFNetworkReachabilityStatusReachableViaWWAN: // 手机自带网络
@@ -249,14 +264,14 @@ static PHNetWorkClient *__helper = nil;
                     [operationQueue setSuspended:NO];
 
                 }
-
+                self.online = YES;
                 PHLog(@"手机自带网络");
                 break;
 
             case AFNetworkReachabilityStatusReachableViaWiFi: // WIFI
                 operationQueue.maxConcurrentOperationCount = 6;
                 [operationQueue setSuspended:NO];
-
+                self.online = YES;
                 PHLog(@"WIFI");
                 break;
         }

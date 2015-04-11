@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 0
 
+// EARestrictedScrollView
+#define COCOAPODS_POD_AVAILABLE_EARestrictedScrollView
+#define COCOAPODS_VERSION_MAJOR_EARestrictedScrollView 0
+#define COCOAPODS_VERSION_MINOR_EARestrictedScrollView 1
+#define COCOAPODS_VERSION_PATCH_EARestrictedScrollView 0
+
 // JSONModel
 #define COCOAPODS_POD_AVAILABLE_JSONModel
 #define COCOAPODS_VERSION_MAJOR_JSONModel 1
@@ -89,6 +95,12 @@
 #define COCOAPODS_VERSION_MAJOR_SDWebImage_Core 3
 #define COCOAPODS_VERSION_MINOR_SDWebImage_Core 7
 #define COCOAPODS_VERSION_PATCH_SDWebImage_Core 1
+
+// SMPageControl
+#define COCOAPODS_POD_AVAILABLE_SMPageControl
+#define COCOAPODS_VERSION_MAJOR_SMPageControl 1
+#define COCOAPODS_VERSION_MINOR_SMPageControl 2
+#define COCOAPODS_VERSION_PATCH_SMPageControl 0
 
 // SSKeychain
 #define COCOAPODS_POD_AVAILABLE_SSKeychain

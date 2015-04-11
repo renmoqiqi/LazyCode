@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-EARestrictedScrollView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-JSONModel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -39,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-SMPageControl.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-SSKeychain.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,47 +62,57 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2584D0B769908A5383A87CC1</key>
+		<key>0F9FEF404861C4D91F294994</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2FEBD37ABDAAD9D9E0E711E9</key>
+		<key>177F50CED7A055EE33D23CA6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>364E9B573079D810BE9CE2F0</key>
+		<key>2ECAF61F48B8BFE61D34CCFC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4A4D9F56D382992993F1991B</key>
+		<key>33ABACF9FA5206800F86DFBC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>61605644B40F5494919F32B7</key>
+		<key>5E770C83846DB8B5D6D70753</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>94F7C8C2C67CF4D26C4350D4</key>
+		<key>5EEDFA50E959A02E77C040BF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>956F5BFC76F22DA81B8480E4</key>
+		<key>6DB2042B9A4A2DC4F5CDA1B8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C6B4132BE992915B52809F39</key>
+		<key>9D98584732958E209D08825E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E5525B7E923EEA0C425AD8D1</key>
+		<key>AA5E0F7A91AA40FA5953DE46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BEBAF02BA65E84DC07DF27C0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F9E5137E2ADAD722F31D5BAC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

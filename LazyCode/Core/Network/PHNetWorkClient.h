@@ -81,6 +81,8 @@ typedef void (^BlockHTTPRequestUploadProgress)(NSUInteger bytesWritten, long lon
 
 //缓存过期时间秒计算
 @property (assign, nonatomic) NSInteger cacheTimeInSeconds;
+//有没有网络
+@property (assign, nonatomic) BOOL online;
 //单例
 + (instancetype)sharedClient;
 

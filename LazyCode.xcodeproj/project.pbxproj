@@ -15,6 +15,11 @@
 		C013CFF11A6268FE0069D868 /* PHFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C013CFF01A6268FE0069D868 /* PHFileCache.m */; };
 		C013CFF41A626A730069D868 /* PHMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C013CFF31A626A730069D868 /* PHMemoryCache.m */; };
 		C034B6DF1A6BA4F40014E9A4 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C034B6DE1A6BA4F40014E9A4 /* AFDownloadRequestOperation.m */; };
+		C08B55F01A8C90550057760E /* PHAutoCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = C08B55EF1A8C90550057760E /* PHAutoCoding.m */; };
+		C08B55F71A8C90B10057760E /* SKSplashIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = C08B55F41A8C90B10057760E /* SKSplashIcon.m */; };
+		C08B55F81A8C90B10057760E /* SKSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = C08B55F61A8C90B10057760E /* SKSplashView.m */; };
+		C08B55FE1A8C9A580057760E /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = C08B55FB1A8C9A580057760E /* EAIntroPage.m */; };
+		C08B55FF1A8C9A580057760E /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = C08B55FD1A8C9A580057760E /* EAIntroView.m */; };
 		C0A5C5111A5C302000E02C9F /* PHBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A5C50E1A5C302000E02C9F /* PHBaseView.m */; };
 		C0A5C5121A5C302000E02C9F /* PHBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A5C5101A5C302000E02C9F /* PHBaseViewController.m */; };
 		C0CFB5471A591E3B002C1589 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CFB5461A591E3B002C1589 /* main.m */; };
@@ -23,7 +28,6 @@
 		C0CFB5521A591E3B002C1589 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0CFB5511A591E3B002C1589 /* Images.xcassets */; };
 		C0CFB5551A591E3B002C1589 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0CFB5531A591E3B002C1589 /* LaunchScreen.xib */; };
 		C0CFB5611A591E3C002C1589 /* LazyCodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CFB5601A591E3C002C1589 /* LazyCodeTests.m */; };
-		C0DA0B221A80BF08003C6A73 /* PHAutoCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DA0B211A80BF08003C6A73 /* PHAutoCoding.m */; };
 		C0E294D31A637B0600BDD7B9 /* PHNetWorkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E294D21A637B0600BDD7B9 /* PHNetWorkClient.m */; };
 		C0F85B101A5FB3D700DC8901 /* PHSystermInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F85B0D1A5FB3D700DC8901 /* PHSystermInfo.m */; };
 		C0F85B131A5FB3E700DC8901 /* NSString+PH.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F85B121A5FB3E700DC8901 /* NSString+PH.m */; };
@@ -61,6 +65,16 @@
 		C013CFF31A626A730069D868 /* PHMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHMemoryCache.m; path = Core/Cache/PHMemoryCache.m; sourceTree = "<group>"; };
 		C034B6DD1A6BA4F40014E9A4 /* AFDownloadRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFDownloadRequestOperation.h; path = Core/Network/AFDownloadRequestOperation.h; sourceTree = "<group>"; };
 		C034B6DE1A6BA4F40014E9A4 /* AFDownloadRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFDownloadRequestOperation.m; path = Core/Network/AFDownloadRequestOperation.m; sourceTree = "<group>"; };
+		C08B55EE1A8C90550057760E /* PHAutoCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHAutoCoding.h; path = Core/Cache/PHAutoCoding.h; sourceTree = "<group>"; };
+		C08B55EF1A8C90550057760E /* PHAutoCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHAutoCoding.m; path = Core/Cache/PHAutoCoding.m; sourceTree = "<group>"; };
+		C08B55F31A8C90B10057760E /* SKSplashIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKSplashIcon.h; sourceTree = "<group>"; };
+		C08B55F41A8C90B10057760E /* SKSplashIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKSplashIcon.m; sourceTree = "<group>"; };
+		C08B55F51A8C90B10057760E /* SKSplashView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKSplashView.h; sourceTree = "<group>"; };
+		C08B55F61A8C90B10057760E /* SKSplashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKSplashView.m; sourceTree = "<group>"; };
+		C08B55FA1A8C9A580057760E /* EAIntroPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroPage.h; sourceTree = "<group>"; };
+		C08B55FB1A8C9A580057760E /* EAIntroPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroPage.m; sourceTree = "<group>"; };
+		C08B55FC1A8C9A580057760E /* EAIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroView.h; sourceTree = "<group>"; };
+		C08B55FD1A8C9A580057760E /* EAIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroView.m; sourceTree = "<group>"; };
 		C09BE0541A5CC436005FC20F /* LazyCode-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LazyCode-Prefix.pch"; sourceTree = "<group>"; };
 		C0A5C50D1A5C302000E02C9F /* PHBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHBaseView.h; path = BaseClass/PHBaseView.h; sourceTree = "<group>"; };
 		C0A5C50E1A5C302000E02C9F /* PHBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHBaseView.m; path = BaseClass/PHBaseView.m; sourceTree = "<group>"; };
@@ -77,8 +91,6 @@
 		C0CFB55A1A591E3C002C1589 /* LazyCodeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LazyCodeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0CFB55F1A591E3C002C1589 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0CFB5601A591E3C002C1589 /* LazyCodeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LazyCodeTests.m; sourceTree = "<group>"; };
-		C0DA0B201A80BF08003C6A73 /* PHAutoCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHAutoCoding.h; sourceTree = "<group>"; };
-		C0DA0B211A80BF08003C6A73 /* PHAutoCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHAutoCoding.m; sourceTree = "<group>"; };
 		C0E294D11A637B0600BDD7B9 /* PHNetWorkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHNetWorkClient.h; path = Core/Network/PHNetWorkClient.h; sourceTree = "<group>"; };
 		C0E294D21A637B0600BDD7B9 /* PHNetWorkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHNetWorkClient.m; path = Core/Network/PHNetWorkClient.m; sourceTree = "<group>"; };
 		C0F85B0C1A5FB3D700DC8901 /* PHSystermInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHSystermInfo.h; path = Core/Foundation/System/PHSystermInfo.h; sourceTree = "<group>"; };
@@ -149,6 +161,37 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		C08B55F11A8C90B10057760E /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				C08B55F91A8C9A580057760E /* EAIntroView */,
+				C08B55F21A8C90B10057760E /* SKSplashView */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		C08B55F21A8C90B10057760E /* SKSplashView */ = {
+			isa = PBXGroup;
+			children = (
+				C08B55F31A8C90B10057760E /* SKSplashIcon.h */,
+				C08B55F41A8C90B10057760E /* SKSplashIcon.m */,
+				C08B55F51A8C90B10057760E /* SKSplashView.h */,
+				C08B55F61A8C90B10057760E /* SKSplashView.m */,
+			);
+			path = SKSplashView;
+			sourceTree = "<group>";
+		};
+		C08B55F91A8C9A580057760E /* EAIntroView */ = {
+			isa = PBXGroup;
+			children = (
+				C08B55FA1A8C9A580057760E /* EAIntroPage.h */,
+				C08B55FB1A8C9A580057760E /* EAIntroPage.m */,
+				C08B55FC1A8C9A580057760E /* EAIntroView.h */,
+				C08B55FD1A8C9A580057760E /* EAIntroView.m */,
+			);
+			path = EAIntroView;
+			sourceTree = "<group>";
+		};
 		C0CFB5381A591E3B002C1589 = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +215,7 @@
 		C0CFB5431A591E3B002C1589 /* LazyCode */ = {
 			isa = PBXGroup;
 			children = (
+				C08B55F11A8C90B10057760E /* ThirdParty */,
 				C0CFB5771A5931C4002C1589 /* BaseClass */,
 				C0CFB5711A592DF4002C1589 /* Core */,
 				C0CFB5701A592D90002C1589 /* MVC */,
@@ -269,8 +313,8 @@
 				C013CFF01A6268FE0069D868 /* PHFileCache.m */,
 				C013CFF21A626A730069D868 /* PHMemoryCache.h */,
 				C013CFF31A626A730069D868 /* PHMemoryCache.m */,
-				C0DA0B201A80BF08003C6A73 /* PHAutoCoding.h */,
-				C0DA0B211A80BF08003C6A73 /* PHAutoCoding.m */,
+				C08B55EE1A8C90550057760E /* PHAutoCoding.h */,
+				C08B55EF1A8C90550057760E /* PHAutoCoding.m */,
 			);
 			name = Cache;
 			sourceTree = "<group>";
@@ -476,19 +520,23 @@
 				C013CFE71A6232310069D868 /* PHSandbox.m in Sources */,
 				C0CFB54A1A591E3B002C1589 /* AppDelegate.m in Sources */,
 				C0A5C5111A5C302000E02C9F /* PHBaseView.m in Sources */,
+				C08B55F81A8C90B10057760E /* SKSplashView.m in Sources */,
+				C08B55F01A8C90550057760E /* PHAutoCoding.m in Sources */,
 				C0F85B1C1A5FBECD00DC8901 /* NSDictionary+PH.m in Sources */,
 				C034B6DF1A6BA4F40014E9A4 /* AFDownloadRequestOperation.m in Sources */,
 				C0F85B161A5FB69100DC8901 /* NSData+PH.m in Sources */,
 				C0CFB5471A591E3B002C1589 /* main.m in Sources */,
+				C08B55F71A8C90B10057760E /* SKSplashIcon.m in Sources */,
 				C0A5C5121A5C302000E02C9F /* PHBaseViewController.m in Sources */,
 				C0F85B191A5FBDD500DC8901 /* NSObject+PH.m in Sources */,
+				C08B55FE1A8C9A580057760E /* EAIntroPage.m in Sources */,
 				C013CFF11A6268FE0069D868 /* PHFileCache.m in Sources */,
 				C013CFEB1A6263C20069D868 /* PHUserDefaults.m in Sources */,
 				C0F85B101A5FB3D700DC8901 /* PHSystermInfo.m in Sources */,
 				C0E294D31A637B0600BDD7B9 /* PHNetWorkClient.m in Sources */,
 				C013CFF41A626A730069D868 /* PHMemoryCache.m in Sources */,
-				C0DA0B221A80BF08003C6A73 /* PHAutoCoding.m in Sources */,
 				C013CFEE1A6265920069D868 /* PHKeychain.m in Sources */,
+				C08B55FF1A8C9A580057760E /* EAIntroView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
