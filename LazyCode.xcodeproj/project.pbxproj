@@ -14,6 +14,10 @@
 		C013CFEE1A6265920069D868 /* PHKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = C013CFED1A6265920069D868 /* PHKeychain.m */; };
 		C013CFF11A6268FE0069D868 /* PHFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C013CFF01A6268FE0069D868 /* PHFileCache.m */; };
 		C013CFF41A626A730069D868 /* PHMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C013CFF31A626A730069D868 /* PHMemoryCache.m */; };
+		C016D99E1AF5CC8E00278BE0 /* UIButton+Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C016D99D1AF5CC8E00278BE0 /* UIButton+Indicator.m */; };
+		C016D9A11AF5CD5A00278BE0 /* UIButton+CountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = C016D9A01AF5CD5A00278BE0 /* UIButton+CountDown.m */; };
+		C016D9A71AF5D2CC00278BE0 /* UIButton+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = C016D9A61AF5D2CC00278BE0 /* UIButton+Badge.m */; };
+		C016D9AC1AF5D46700278BE0 /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = C016D9AB1AF5D46700278BE0 /* UITextView+Placeholder.m */; };
 		C034B6DF1A6BA4F40014E9A4 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C034B6DE1A6BA4F40014E9A4 /* AFDownloadRequestOperation.m */; };
 		C08B55F01A8C90550057760E /* PHAutoCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = C08B55EF1A8C90550057760E /* PHAutoCoding.m */; };
 		C08B55F71A8C90B10057760E /* SKSplashIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = C08B55F41A8C90B10057760E /* SKSplashIcon.m */; };
@@ -22,6 +26,8 @@
 		C08B55FF1A8C9A580057760E /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = C08B55FD1A8C9A580057760E /* EAIntroView.m */; };
 		C0A5C5111A5C302000E02C9F /* PHBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A5C50E1A5C302000E02C9F /* PHBaseView.m */; };
 		C0A5C5121A5C302000E02C9F /* PHBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A5C5101A5C302000E02C9F /* PHBaseViewController.m */; };
+		C0A5FBA61AF65E680062AF35 /* UIColor+PH.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A5FBA51AF65E680062AF35 /* UIColor+PH.m */; };
+		C0A5FBA91AF660920062AF35 /* UIButton+GetTableViewCellIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A5FBA81AF660920062AF35 /* UIButton+GetTableViewCellIndexPath.m */; };
 		C0CFB5471A591E3B002C1589 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CFB5461A591E3B002C1589 /* main.m */; };
 		C0CFB54A1A591E3B002C1589 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CFB5491A591E3B002C1589 /* AppDelegate.m */; };
 		C0CFB5501A591E3B002C1589 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0CFB54E1A591E3B002C1589 /* Main.storyboard */; };
@@ -50,7 +56,6 @@
 		5A82ABB40A10EDC06E3ED4C4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C00D3B5D1A5C314C0025BFAF /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = LazyCode/MVC/Controller/ViewController.h; sourceTree = SOURCE_ROOT; };
 		C00D3B5E1A5C314C0025BFAF /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = LazyCode/MVC/Controller/ViewController.m; sourceTree = SOURCE_ROOT; };
-		C013CFE31A6231390069D868 /* Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Extension.h; path = Core/Foundation/Extension/Extension.h; sourceTree = "<group>"; };
 		C013CFE41A6231880069D868 /* PHCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHCache.h; path = Core/Cache/PHCache.h; sourceTree = "<group>"; };
 		C013CFE51A6232310069D868 /* PHSandbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHSandbox.h; path = Core/Foundation/System/PHSandbox.h; sourceTree = "<group>"; };
 		C013CFE61A6232310069D868 /* PHSandbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHSandbox.m; path = Core/Foundation/System/PHSandbox.m; sourceTree = "<group>"; };
@@ -63,6 +68,17 @@
 		C013CFF01A6268FE0069D868 /* PHFileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHFileCache.m; path = Core/Cache/PHFileCache.m; sourceTree = "<group>"; };
 		C013CFF21A626A730069D868 /* PHMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHMemoryCache.h; path = Core/Cache/PHMemoryCache.h; sourceTree = "<group>"; };
 		C013CFF31A626A730069D868 /* PHMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHMemoryCache.m; path = Core/Cache/PHMemoryCache.m; sourceTree = "<group>"; };
+		C016D99C1AF5CC8E00278BE0 /* UIButton+Indicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Indicator.h"; sourceTree = "<group>"; };
+		C016D99D1AF5CC8E00278BE0 /* UIButton+Indicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Indicator.m"; sourceTree = "<group>"; };
+		C016D99F1AF5CD5A00278BE0 /* UIButton+CountDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+CountDown.h"; sourceTree = "<group>"; };
+		C016D9A01AF5CD5A00278BE0 /* UIButton+CountDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CountDown.m"; sourceTree = "<group>"; };
+		C016D9A21AF5CDFE00278BE0 /* PHButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHButton.h; sourceTree = "<group>"; };
+		C016D9A31AF5CE4E00278BE0 /* PHUIKitExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHUIKitExtension.h; sourceTree = "<group>"; };
+		C016D9A41AF5CECC00278BE0 /* PHFoundationExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHFoundationExtension.h; sourceTree = "<group>"; };
+		C016D9A51AF5D2CC00278BE0 /* UIButton+Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Badge.h"; sourceTree = "<group>"; };
+		C016D9A61AF5D2CC00278BE0 /* UIButton+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Badge.m"; sourceTree = "<group>"; };
+		C016D9AA1AF5D46700278BE0 /* UITextView+Placeholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Placeholder.h"; sourceTree = "<group>"; };
+		C016D9AB1AF5D46700278BE0 /* UITextView+Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Placeholder.m"; sourceTree = "<group>"; };
 		C034B6DD1A6BA4F40014E9A4 /* AFDownloadRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFDownloadRequestOperation.h; path = Core/Network/AFDownloadRequestOperation.h; sourceTree = "<group>"; };
 		C034B6DE1A6BA4F40014E9A4 /* AFDownloadRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFDownloadRequestOperation.m; path = Core/Network/AFDownloadRequestOperation.m; sourceTree = "<group>"; };
 		C08B55EE1A8C90550057760E /* PHAutoCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHAutoCoding.h; path = Core/Cache/PHAutoCoding.h; sourceTree = "<group>"; };
@@ -80,6 +96,11 @@
 		C0A5C50E1A5C302000E02C9F /* PHBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHBaseView.m; path = BaseClass/PHBaseView.m; sourceTree = "<group>"; };
 		C0A5C50F1A5C302000E02C9F /* PHBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHBaseViewController.h; path = BaseClass/PHBaseViewController.h; sourceTree = "<group>"; };
 		C0A5C5101A5C302000E02C9F /* PHBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHBaseViewController.m; path = BaseClass/PHBaseViewController.m; sourceTree = "<group>"; };
+		C0A5FBA21AF64B600062AF35 /* PHTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHTextView.h; sourceTree = "<group>"; };
+		C0A5FBA41AF65E680062AF35 /* UIColor+PH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PH.h"; sourceTree = "<group>"; };
+		C0A5FBA51AF65E680062AF35 /* UIColor+PH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PH.m"; sourceTree = "<group>"; };
+		C0A5FBA71AF660920062AF35 /* UIButton+GetTableViewCellIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+GetTableViewCellIndexPath.h"; sourceTree = "<group>"; };
+		C0A5FBA81AF660920062AF35 /* UIButton+GetTableViewCellIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+GetTableViewCellIndexPath.m"; sourceTree = "<group>"; };
 		C0CFB5411A591E3B002C1589 /* LazyCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LazyCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0CFB5451A591E3B002C1589 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0CFB5461A591E3B002C1589 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -157,8 +178,38 @@
 		C013CFF61A626EBD0069D868 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				C0A5FBA31AF65D240062AF35 /* PHColor */,
+				C016D9A91AF5D45800278BE0 /* PHTextView */,
+				C016D9981AF5CC7100278BE0 /* PHButton */,
+				C016D9A31AF5CE4E00278BE0 /* PHUIKitExtension.h */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		C016D9981AF5CC7100278BE0 /* PHButton */ = {
+			isa = PBXGroup;
+			children = (
+				C016D9A21AF5CDFE00278BE0 /* PHButton.h */,
+				C016D99C1AF5CC8E00278BE0 /* UIButton+Indicator.h */,
+				C016D99D1AF5CC8E00278BE0 /* UIButton+Indicator.m */,
+				C016D99F1AF5CD5A00278BE0 /* UIButton+CountDown.h */,
+				C016D9A01AF5CD5A00278BE0 /* UIButton+CountDown.m */,
+				C016D9A51AF5D2CC00278BE0 /* UIButton+Badge.h */,
+				C016D9A61AF5D2CC00278BE0 /* UIButton+Badge.m */,
+				C0A5FBA71AF660920062AF35 /* UIButton+GetTableViewCellIndexPath.h */,
+				C0A5FBA81AF660920062AF35 /* UIButton+GetTableViewCellIndexPath.m */,
+			);
+			path = PHButton;
+			sourceTree = "<group>";
+		};
+		C016D9A91AF5D45800278BE0 /* PHTextView */ = {
+			isa = PBXGroup;
+			children = (
+				C016D9AA1AF5D46700278BE0 /* UITextView+Placeholder.h */,
+				C016D9AB1AF5D46700278BE0 /* UITextView+Placeholder.m */,
+				C0A5FBA21AF64B600062AF35 /* PHTextView.h */,
+			);
+			path = PHTextView;
 			sourceTree = "<group>";
 		};
 		C08B55F11A8C90B10057760E /* ThirdParty */ = {
@@ -190,6 +241,15 @@
 				C08B55FD1A8C9A580057760E /* EAIntroView.m */,
 			);
 			path = EAIntroView;
+			sourceTree = "<group>";
+		};
+		C0A5FBA31AF65D240062AF35 /* PHColor */ = {
+			isa = PBXGroup;
+			children = (
+				C0A5FBA41AF65E680062AF35 /* UIColor+PH.h */,
+				C0A5FBA51AF65E680062AF35 /* UIColor+PH.m */,
+			);
+			path = PHColor;
 			sourceTree = "<group>";
 		};
 		C0CFB5381A591E3B002C1589 = {
@@ -350,7 +410,7 @@
 				C0F85B181A5FBDD500DC8901 /* NSObject+PH.m */,
 				C0F85B1A1A5FBECD00DC8901 /* NSDictionary+PH.h */,
 				C0F85B1B1A5FBECD00DC8901 /* NSDictionary+PH.m */,
-				C013CFE31A6231390069D868 /* Extension.h */,
+				C016D9A41AF5CECC00278BE0 /* PHFoundationExtension.h */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -516,20 +576,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				C00D3B5F1A5C314C0025BFAF /* ViewController.m in Sources */,
+				C016D9AC1AF5D46700278BE0 /* UITextView+Placeholder.m in Sources */,
 				C0F85B131A5FB3E700DC8901 /* NSString+PH.m in Sources */,
 				C013CFE71A6232310069D868 /* PHSandbox.m in Sources */,
 				C0CFB54A1A591E3B002C1589 /* AppDelegate.m in Sources */,
 				C0A5C5111A5C302000E02C9F /* PHBaseView.m in Sources */,
+				C016D9A11AF5CD5A00278BE0 /* UIButton+CountDown.m in Sources */,
 				C08B55F81A8C90B10057760E /* SKSplashView.m in Sources */,
 				C08B55F01A8C90550057760E /* PHAutoCoding.m in Sources */,
 				C0F85B1C1A5FBECD00DC8901 /* NSDictionary+PH.m in Sources */,
 				C034B6DF1A6BA4F40014E9A4 /* AFDownloadRequestOperation.m in Sources */,
 				C0F85B161A5FB69100DC8901 /* NSData+PH.m in Sources */,
+				C0A5FBA91AF660920062AF35 /* UIButton+GetTableViewCellIndexPath.m in Sources */,
+				C016D99E1AF5CC8E00278BE0 /* UIButton+Indicator.m in Sources */,
 				C0CFB5471A591E3B002C1589 /* main.m in Sources */,
 				C08B55F71A8C90B10057760E /* SKSplashIcon.m in Sources */,
 				C0A5C5121A5C302000E02C9F /* PHBaseViewController.m in Sources */,
 				C0F85B191A5FBDD500DC8901 /* NSObject+PH.m in Sources */,
+				C0A5FBA61AF65E680062AF35 /* UIColor+PH.m in Sources */,
 				C08B55FE1A8C9A580057760E /* EAIntroPage.m in Sources */,
+				C016D9A71AF5D2CC00278BE0 /* UIButton+Badge.m in Sources */,
 				C013CFF11A6268FE0069D868 /* PHFileCache.m in Sources */,
 				C013CFEB1A6263C20069D868 /* PHUserDefaults.m in Sources */,
 				C0F85B101A5FB3D700DC8901 /* PHSystermInfo.m in Sources */,

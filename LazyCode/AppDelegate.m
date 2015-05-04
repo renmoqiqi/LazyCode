@@ -16,6 +16,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
     // Override point for customization after application launch.
     PHLog(@"%@",[[PHSandbox libCachePath]stringByAppendingPathComponent:@"QQ_V3.0.0.dmg"]);
     [PHNetWorkClient sharedClient].requestTimeoutInterval = 2.0;
