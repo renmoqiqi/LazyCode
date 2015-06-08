@@ -8,7 +8,7 @@
 
 #import "PHSystermInfo.h"
 #import "OpenUDID.h"
-#import "PHCommonDefine.h"
+#import "PHMacroDefinition.h"
 @implementation PHSystermInfo
 
 DEF_SINGLETON(PHSystermInfo)

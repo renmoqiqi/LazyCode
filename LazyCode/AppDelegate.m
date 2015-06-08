@@ -20,8 +20,8 @@
     // Override point for customization after application launch.
     PHLog(@"%@",[[PHSandbox libCachePath]stringByAppendingPathComponent:@"QQ_V3.0.0.dmg"]);
     [PHNetWorkClient sharedClient].requestTimeoutInterval = 2.0;
-    [[PHNetWorkClient sharedClient] GET:@"http://dl_dir.qq.com/qqfile/qq/QQforMac/QQ_V3.0.0.dmg" param:nil filePath:[[PHSandbox libCachePath]stringByAppendingPathComponent:@"QQ_V3.0.0.dmg"] shouldResume:YES downloadProgress:^(AFDownloadRequestOperation *operation, NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
-    NSLog(@"%ld",(long)bytesRead);
+    [[PHNetWorkClient sharedClient] GET:@"http://dl_dir.qq.com/qqfile/qq/QQforMac/QQ_V3.0.0.dmg" param:nil filePath:[[PHSandbox libCachePath]stringByAppendingPathComponent:@"QQ_V3.0.0.dmg"] shouldResume:NO downloadProgress:^(AFDownloadRequestOperation *operation, NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
+    NSLog(@"%ld",(long)totalBytesReadForFile);
 
 } success:^(AFHTTPRequestOperation *operation, id responseObject) {
     PHLog(nil, @"Download succeed", @"ok");

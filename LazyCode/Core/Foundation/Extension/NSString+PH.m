@@ -375,6 +375,77 @@
     return [string stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
+#pragma mark -- HttpRequestUrlTools
+//编码URL 一些特殊符号
++ (NSString*)urlEncode:(NSString*)str {
+    //different library use slightly different escaped and unescaped set.
+    //below is copied from AFNetworking but still escaped [] as AF leave them for Rails array parameter which we don't use.
+    //https://github.com/AFNetworking/AFNetworking/pull/555
+    NSString *result = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (__bridge CFStringRef)str, CFSTR("."), CFSTR(":/?#[]@!$&'()*+,;="), kCFStringEncodingUTF8);
+    return result;
+}
+
+//originUrlString 原始的URL地址 parameters 需要穿的参数
++ (NSString *)urlStringWithOriginUrlString:(NSString *)originUrlString appendParameters:(NSDictionary *)parameters {
+    NSString *filteredUrl = originUrlString;
+    NSString *paraUrlString = [self URLQueryWithParameters:parameters useArraySyntax:YES];
+    
+    if (paraUrlString && paraUrlString.length > 0) {
+        if ([originUrlString rangeOfString:@"?"].location != NSNotFound) {
+            filteredUrl = [filteredUrl stringByAppendingString:paraUrlString];
+        } else {
+            filteredUrl = [filteredUrl stringByAppendingFormat:@"?%@", [paraUrlString substringFromIndex:1]];
+        }
+        return filteredUrl;
+    } else {
+        return originUrlString;
+    }
+}
+//useArraySyntax 是不是要用数组［］标示
++ (NSString *)URLQueryWithParameters:(NSDictionary *)parameters useArraySyntax:(BOOL)useArraySyntax
+{
+    NSMutableString *result = [NSMutableString string];
+    NSArray *keys = [parameters allKeys];
+    for (NSString *key in keys)
+    {
+        id value = parameters[key];
+        NSString *encodedKey = [self urlEncode:[key description]];
+        if ([value isKindOfClass:[NSArray class]])
+        {
+            
+            for (NSString *element in value)
+            {
+                if ([result length])
+                {
+                    [result appendString:@"&"];
+                }
+                if (useArraySyntax)
+                {
+                    [result appendFormat:@"%@[]=%@", encodedKey,[self urlEncode:[element description]]];
+                }
+                else
+                {
+                    [result appendFormat:@"%@=%@", encodedKey, [self urlEncode:[element description]]];
+                }
+            }
+            
+        }
+        else
+        {
+            if ([result length])
+            {
+                [result appendString:@"&"];
+            }
+            
+            else
+            {
+                [result appendFormat:@"%@=%@", encodedKey, [self urlEncode:[value description]]];
+            }
+        }
+    }
+    
+    return result;
+}
 - (NSString *)MD5
 {
     NSData * value;

@@ -9,7 +9,7 @@
 #ifndef LazyCode_PHFoundation_h
 #define LazyCode_PHFoundation_h
 
-#import "PHCommonDefine.h"
+#import "PHMacroDefinition.h"
 #import "PHSystermInfo.h"
 #import "PHSandbox.h"
 #endif

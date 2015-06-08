@@ -28,7 +28,8 @@ AS_SINGLETON( PHSandbox )
 //是否存在文件
 + (BOOL)touchFile:(NSString *)file;
 + (NSString *)resPath:(NSString *)file;      // 返回资源目录的文件路径
-
+//删除某个文件 file 沙盒路径
++ (BOOL)removeFile:(NSString *)file;
 /**
  * 创建目录
  * api parameters 说明

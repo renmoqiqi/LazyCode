@@ -51,8 +51,7 @@ static PHNetWorkClient *__helper = nil;
     {
         __helper.requestSerializer = [AFJSONRequestSerializer serializer];
     }
-    //网络设置,默认有网
-    self.online = YES;
+
 
 }
 + (instancetype)sharedClient
@@ -61,7 +60,6 @@ static PHNetWorkClient *__helper = nil;
     dispatch_once(&onceToken, ^{
         __helper = [[self alloc] initWithBaseURL:[NSURL URLWithString:[[self class] baseUrl]]];
         if ([[[self class] baseUrl] notEmpty]) {
-            [__helper networkStateChange];
 
         }
     });
@@ -126,42 +124,30 @@ static PHNetWorkClient *__helper = nil;
     }
 }
 #pragma mark
-#pragma mark -- urlTools
-+ (NSString*)urlEncode:(NSString*)str {
-    //different library use slightly different escaped and unescaped set.
-    //below is copied from AFNetworking but still escaped [] as AF leave them for Rails array parameter which we don't use.
-    //https://github.com/AFNetworking/AFNetworking/pull/555
-    NSString *result = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (__bridge CFStringRef)str, CFSTR("."), CFSTR(":/?#[]@!$&'()*+,;="), kCFStringEncodingUTF8);
-    return result;
+
+#pragma mark
+- (void)callAllOperations
+{
+    [__helper.operationQueue cancelAllOperations];
 }
-+ (NSString *)urlParametersStringFromParameters:(NSDictionary *)parameters {
-    NSMutableString *urlParametersString = [[NSMutableString alloc] initWithString:@""];
-    if (parameters && parameters.count > 0) {
-        for (NSString *key in parameters) {
-            NSString *value = parameters[key];
-            value = [NSString stringWithFormat:@"%@",value];
-            value = [self urlEncode:value];
-            [urlParametersString appendFormat:@"&%@=%@", key, value];
+- (void)cancelHTTPOperationsWithMethod:(NSString *)method url:(NSString *)url
+{
+    NSError *error;
+    
+    NSString *pathToBeMatched = [[[__helper.requestSerializer requestWithMethod:method URLString:[[NSURL URLWithString:url] absoluteString] parameters:nil error:&error] URL] path];
+    
+    for (NSOperation *operation in [__helper.operationQueue operations]) {
+        if (![operation isKindOfClass:[AFHTTPRequestOperation class]]) {
+            continue;
+        }
+        BOOL hasMatchingMethod = !method || [method  isEqualToString:[[(AFHTTPRequestOperation *)operation request] HTTPMethod]];
+        BOOL hasMatchingPath = [[[[(AFHTTPRequestOperation *)operation request] URL] path] isEqual:pathToBeMatched];
+        
+        if (hasMatchingMethod && hasMatchingPath) {
+            [operation cancel];
         }
     }
-    return urlParametersString;
 }
-
-+ (NSString *)urlStringWithOriginUrlString:(NSString *)originUrlString appendParameters:(NSDictionary *)parameters {
-    NSString *filteredUrl = originUrlString;
-    NSString *paraUrlString = [self urlParametersStringFromParameters:parameters];
-    if (paraUrlString && paraUrlString.length > 0) {
-        if ([originUrlString rangeOfString:@"?"].location != NSNotFound) {
-            filteredUrl = [filteredUrl stringByAppendingString:paraUrlString];
-        } else {
-            filteredUrl = [filteredUrl stringByAppendingFormat:@"?%@", [paraUrlString substringFromIndex:1]];
-        }
-        return filteredUrl;
-    } else {
-        return originUrlString;
-    }
-}
-
 #pragma mark
 - (AFHTTPRequestOperation *)POST:(NSString *)urlPath
                            param:(NSDictionary *)params
@@ -229,11 +215,11 @@ static PHNetWorkClient *__helper = nil;
 
 #pragma mark 
 //监控网络变化
-- (void)networkStateChange
+- (void)startMonitorNetworkStateChange
 {
     // 1.获得网络监控的管理者
     AFNetworkReachabilityManager *reachabilityManager = __helper.reachabilityManager;
-
+    
     NSOperationQueue *operationQueue = __helper.operationQueue;
     // 2.设置网络状态改变后的处理
     [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
@@ -241,37 +227,41 @@ static PHNetWorkClient *__helper = nil;
         switch (status) {
             case AFNetworkReachabilityStatusUnknown: // 未知网络
                 PHLog(@"未知网络");
+                self.networkReachabilityStatus = PHNetworkReachabilityStatusUnknown;
                 [operationQueue setSuspended:YES];
-                self.online = YES;
+                
                 break;
-
+                
             case AFNetworkReachabilityStatusNotReachable: // 没有网络(断网)
                 PHLog(@"没有网络(断网)");
+                self.networkReachabilityStatus = PHNetworkReachabilityStatusNotReachable;
+                
                 [operationQueue setSuspended:YES];
-                self.online = NO;
                 break;
-
+                
             case AFNetworkReachabilityStatusReachableViaWWAN: // 手机自带网络
+                self.networkReachabilityStatus = PHNetworkReachabilityStatusReachableViaWWAN;
+                
                 if(self.wifiOnlyMode)
                 {
                     operationQueue.maxConcurrentOperationCount = 0;
                     [operationQueue setSuspended:YES];
-
+                    
                 }
                 else
                 {
                     operationQueue.maxConcurrentOperationCount = 2;
                     [operationQueue setSuspended:NO];
-
+                    
                 }
-                self.online = YES;
+                
                 PHLog(@"手机自带网络");
                 break;
-
+                
             case AFNetworkReachabilityStatusReachableViaWiFi: // WIFI
+                self.networkReachabilityStatus = PHNetworkReachabilityStatusReachableViaWiFi;
                 operationQueue.maxConcurrentOperationCount = 6;
                 [operationQueue setSuspended:NO];
-                self.online = YES;
                 PHLog(@"WIFI");
                 break;
         }

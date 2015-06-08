@@ -22,6 +22,14 @@ typedef NS_ENUM(NSInteger , PHRequestSerializerType) {
     PHRequestSerializerTypeHTTP = 0,
     PHRequestSerializerTypeJSON,
 };
+
+typedef NS_ENUM(NSInteger, PHNetworkReachabilityStatus) {
+    PHNetworkReachabilityStatusUnknown          = -1, //未知
+    PHNetworkReachabilityStatusNotReachable     = 0,  //没有网络
+    PHNetworkReachabilityStatusReachableViaWWAN = 1,  //手机网络
+    PHNetworkReachabilityStatusReachableViaWiFi = 2,  //Wi-Fi网络
+};
+
 /**
  url 缓存
  */
@@ -79,13 +87,26 @@ typedef void (^BlockHTTPRequestUploadProgress)(NSUInteger bytesWritten, long lon
 //手机网络如果设置YES则不请求数据
 @property (assign, nonatomic) BOOL wifiOnlyMode;
 
+//网络监控的结果是 Wi-Fi还是手机网络还是没有网络
+@property (assign, nonatomic) PHNetworkReachabilityStatus networkReachabilityStatus;
+
 //缓存过期时间秒计算
 @property (assign, nonatomic) NSInteger cacheTimeInSeconds;
-//有没有网络
-@property (assign, nonatomic) BOOL online;
+
 //单例
 + (instancetype)sharedClient;
+//监控网络启动
+- (void)startMonitorNetworkStateChange;
 
+//取消所有网络请求
+- (void)callAllOperations;
+/**
+ *  取消某个/些正在发送的请求
+ *
+ *  @param method                可以是 GET/POST/DELETE/PUT
+ *  @param url                   要取消的 url
+ */
+- (void)cancelHTTPOperationsWithMethod:(NSString *)method url:(NSString *)url;
 #pragma mark
 
 /**

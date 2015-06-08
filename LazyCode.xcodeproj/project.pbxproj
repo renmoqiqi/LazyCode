@@ -116,7 +116,7 @@
 		C0E294D21A637B0600BDD7B9 /* PHNetWorkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHNetWorkClient.m; path = Core/Network/PHNetWorkClient.m; sourceTree = "<group>"; };
 		C0F85B0C1A5FB3D700DC8901 /* PHSystermInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHSystermInfo.h; path = Core/Foundation/System/PHSystermInfo.h; sourceTree = "<group>"; };
 		C0F85B0D1A5FB3D700DC8901 /* PHSystermInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHSystermInfo.m; path = Core/Foundation/System/PHSystermInfo.m; sourceTree = "<group>"; };
-		C0F85B0E1A5FB3D700DC8901 /* PHCommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHCommonDefine.h; path = Core/Foundation/System/PHCommonDefine.h; sourceTree = "<group>"; };
+		C0F85B0E1A5FB3D700DC8901 /* PHMacroDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHMacroDefinition.h; path = Core/Foundation/System/PHMacroDefinition.h; sourceTree = "<group>"; };
 		C0F85B0F1A5FB3D700DC8901 /* PHFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHFoundation.h; path = Core/Foundation/System/PHFoundation.h; sourceTree = "<group>"; };
 		C0F85B111A5FB3E700DC8901 /* NSString+PH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+PH.h"; path = "Core/Foundation/Extension/NSString+PH.h"; sourceTree = "<group>"; };
 		C0F85B121A5FB3E700DC8901 /* NSString+PH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+PH.m"; path = "Core/Foundation/Extension/NSString+PH.m"; sourceTree = "<group>"; };
@@ -420,7 +420,7 @@
 			children = (
 				C0F85B0C1A5FB3D700DC8901 /* PHSystermInfo.h */,
 				C0F85B0D1A5FB3D700DC8901 /* PHSystermInfo.m */,
-				C0F85B0E1A5FB3D700DC8901 /* PHCommonDefine.h */,
+				C0F85B0E1A5FB3D700DC8901 /* PHMacroDefinition.h */,
 				C0F85B0F1A5FB3D700DC8901 /* PHFoundation.h */,
 				C013CFE51A6232310069D868 /* PHSandbox.h */,
 				C013CFE61A6232310069D868 /* PHSandbox.m */,

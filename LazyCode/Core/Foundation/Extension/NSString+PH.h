@@ -49,6 +49,8 @@ typedef NSMutableString *	(^NSMutableStringReplaceBlock)( NSString * string, NSS
 //中 的 & 起到分割作用 等等，如果 你提供的URL 本身就含有 这些字符，就需要把这些字符 转化为 “%+ASCII” 形式，以免造成冲突。
 - (NSString *)URLEncoding;
 - (NSString *)URLDecoding;
+//originUrlString 原始的URL地址 parameters 需要穿的参数
++ (NSString *)urlStringWithOriginUrlString:(NSString *)originUrlString appendParameters:(NSDictionary *)parameters;
 
 //去掉两端的空格
 - (NSString *)trim;

@@ -161,7 +161,15 @@ DEF_SINGLETON( PHSandbox )
     
     return YES;
 }
-
++ (BOOL)removeFile:(NSString *)file
+{
+    if ( NO == [[NSFileManager defaultManager] removeItemAtPath:file error:nil] )
+    {
+        return NO;
+    }
+    return YES;
+    
+}
 + (NSString *)resPath:(NSString *)file{
     return [[PHSandbox sharedInstance] resPath:file];
 }
