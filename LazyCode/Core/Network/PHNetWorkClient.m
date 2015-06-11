@@ -200,7 +200,7 @@ static PHNetWorkClient *__helper = nil;
 
     [self paramsSetting];
     // add parameters to URL;
-    NSString *filteredUrl = [[self class] urlStringWithOriginUrlString:urlPath appendParameters:params];
+    NSString *filteredUrl = [NSString urlStringWithOriginUrlString:urlPath appendParameters:params];
 
     NSURLRequest *requestUrl = [NSURLRequest requestWithURL:[NSURL URLWithString:filteredUrl]];
 
