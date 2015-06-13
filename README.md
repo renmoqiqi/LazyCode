@@ -29,3 +29,10 @@ ExtenSion  一些Foundation 类目 <br />
 UIKit 功能 
 ----------------------------------- 
 常用UIKit控件的扩展 <br />  
+
+### 链接  
+1.[我的技术博客](http://www.cnblogs.com/qiqibo/)<br />  
+
+###大家可以请我吃冰淇凌  
+[![image]](http://www.cnblogs.com/qiqibo/)  
+[image]: http://a1.qpic.cn/psb?/V14fG1wt3OfX4m/ruGcIH3FSmdz8ezKY4AJc7UZq.*.hji*h4ifyw2aKQo!/m/dCAAAAAAAAAA&bo=dwGmAQAAAAAFB*U!&rf=photolist "github"  
