@@ -60,7 +60,7 @@ static PHNetWorkClient *__helper = nil;
     dispatch_once(&onceToken, ^{
         __helper = [[self alloc] initWithBaseURL:[NSURL URLWithString:[[self class] baseUrl]]];
         if ([[[self class] baseUrl] notEmpty]) {
-
+            [__helper paramsSetting];
         }
     });
     return __helper;
@@ -95,7 +95,6 @@ static PHNetWorkClient *__helper = nil;
                                     success:(BlockHTTPRequestSuccess)success
                                     failure:(BlockHTTPRequestFailure)failure;
 {
-    [self paramsSetting];
     switch (requestType) {
         case PHHttpRequestGet:
         {
@@ -170,7 +169,6 @@ static PHNetWorkClient *__helper = nil;
                          success:(BlockHTTPRequestSuccess)success
                          failure:(BlockHTTPRequestFailure)failure
 {
-    [self paramsSetting];
     AFHTTPRequestOperation *operation;
     operation = [__helper POST:urlPath parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:file name:formKey fileName:imageName mimeType:@"image/png"];
@@ -187,7 +185,6 @@ static PHNetWorkClient *__helper = nil;
                          success:(BlockHTTPRequestSuccess)success
                          failure:(BlockHTTPRequestFailure)failure
 {
-    [self paramsSetting];
     __block  AFHTTPRequestOperation *operation;
     NSArray *imageKeyArray = params.allKeys;
     [imageKeyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -210,7 +207,6 @@ static PHNetWorkClient *__helper = nil;
                         failure:(BlockHTTPRequestFailure)failure;
 {
 
-    [self paramsSetting];
     // add parameters to URL;
     NSString *filteredUrl = [NSString urlStringWithOriginUrlString:urlPath appendParameters:params];
 

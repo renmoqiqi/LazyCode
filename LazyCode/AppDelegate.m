@@ -18,9 +18,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     // Override point for customization after application launch.
-    PHLog(@"%@",[[PHSandbox libCachePath]stringByAppendingPathComponent:@"ResonantChamber480p.mov"]);
+    PHLog(@"%@",[[PHSandbox libCachePath]stringByAppendingPathComponent:@"QQ_V4.0.2.dmg"]);
     [PHNetWorkClient sharedClient].requestTimeoutInterval = 2.0;
-    [[PHNetWorkClient sharedClient] GET:@"http://media.animusic2.com.s3.amazonaws.com/Animusic-ResonantChamber480p.mov" param:nil filePath:[[PHSandbox libCachePath]stringByAppendingPathComponent:@"ResonantChamber480p.mov"] shouldResume:YES downloadProgress:^(AFDownloadRequestOperation *operation, NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
+    [[PHNetWorkClient sharedClient] GET:@"http://dldir1.qq.com/qqfile/QQforMac/QQ_V4.0.2.dmg" param:nil filePath:[[PHSandbox libCachePath]stringByAppendingPathComponent:@"QQ_V4.0.2.dmg"] shouldResume:YES downloadProgress:^(AFDownloadRequestOperation *operation, NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
     NSLog(@"%ld",(long)totalBytesReadForFile);
 
 } success:^(AFHTTPRequestOperation *operation, id responseObject) {
