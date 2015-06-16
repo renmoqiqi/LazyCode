@@ -154,11 +154,8 @@ DEF_SINGLETON( PHSandbox )
 {
     if ( NO == [[NSFileManager defaultManager] fileExistsAtPath:file] )
     {
-        return [[NSFileManager defaultManager] createFileAtPath:file
-                                                       contents:[NSData data]
-                                                     attributes:nil];
+        return NO;
     }
-    
     return YES;
 }
 + (BOOL)removeFile:(NSString *)file

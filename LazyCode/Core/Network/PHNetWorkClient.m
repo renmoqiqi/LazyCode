@@ -132,9 +132,21 @@ static PHNetWorkClient *__helper = nil;
 }
 - (void)cancelHTTPOperationsWithMethod:(NSString *)method url:(NSString *)url
 {
+    if ([url length]==0) {
+        return;
+    }
     NSError *error;
-    
-    NSString *pathToBeMatched = [[[__helper.requestSerializer requestWithMethod:method URLString:[[NSURL URLWithString:url] absoluteString] parameters:nil error:&error] URL] path];
+    NSString *uRLString;
+    if ([[[NSURL URLWithString:url]scheme] length] != 0)
+    {
+        uRLString = [[NSURL URLWithString:url] absoluteString];
+    }
+    else
+    {
+        uRLString = [[NSURL URLWithString:[[[self class] baseUrl] stringByAppendingString:url]] absoluteString];
+        
+    }
+    NSString *pathToBeMatched = [[[__helper.requestSerializer requestWithMethod:method URLString:uRLString parameters:nil error:&error] URL] path];
     
     for (NSOperation *operation in [__helper.operationQueue operations]) {
         if (![operation isKindOfClass:[AFHTTPRequestOperation class]]) {
