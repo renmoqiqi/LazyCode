@@ -67,7 +67,7 @@ static PHNetWorkClient *__helper = nil;
 }
 
 
-#pragma mark
+#pragma mark -- Request Types
 - (AFHTTPRequestOperation *)GET:(NSString *)urlPath
                           param:(NSDictionary *)params
                         success:(BlockHTTPRequestSuccess)success
@@ -122,9 +122,8 @@ static PHNetWorkClient *__helper = nil;
 
     }
 }
-#pragma mark
 
-#pragma mark
+#pragma mark - Cancel Opration
 - (void)callAllOperations
 {
     [__helper.operationQueue cancelAllOperations];
@@ -159,45 +158,49 @@ static PHNetWorkClient *__helper = nil;
         }
     }
 }
-#pragma mark
+#pragma mark -- Post Files
 - (AFHTTPRequestOperation *)POST:(NSString *)urlPath
                            param:(NSDictionary *)params
                             file:(NSData *)file
-                         formKey:(NSString *)formKey
-                       imageName:(NSString *)imageName
+                         fileKey:(NSString *)fileKey
+                        fileName:(NSString *)fileName
+                    fileMimeType:(NSString *)fileMimeType
                   uploadProgress:(BlockHTTPRequestUploadProgress)uploadProgress
                          success:(BlockHTTPRequestSuccess)success
                          failure:(BlockHTTPRequestFailure)failure
 {
     AFHTTPRequestOperation *operation;
     operation = [__helper POST:urlPath parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:file name:formKey fileName:imageName mimeType:@"image/png"];
-
+        [formData appendPartWithFileData:file name:fileKey fileName:fileName mimeType:fileMimeType];
+        
     } success:success failure:failure];
-
+    
     [operation setUploadProgressBlock:uploadProgress];
     return operation;
 }
 - (AFHTTPRequestOperation *)POST:(NSString *)urlPath
                            param:(NSDictionary *)params
-                  fileDictionary:(NSDictionary *)fileDictionary
+                       fileArray:(NSArray *)fileArray
                   uploadProgress:(BlockHTTPRequestUploadProgress)uploadProgress
                          success:(BlockHTTPRequestSuccess)success
                          failure:(BlockHTTPRequestFailure)failure
 {
     __block  AFHTTPRequestOperation *operation;
-    NSArray *imageKeyArray = params.allKeys;
-    [imageKeyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    
+    [fileArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         operation = [__helper POST:urlPath parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-            [formData appendPartWithFileData:fileDictionary[obj] name:obj fileName:[NSString stringWithFormat:@"%dImage",idx] mimeType:@"image/png"];
-
+            NSDictionary *fileDic = obj;
+            [formData appendPartWithFileData:[fileDic objectForKey:@"fileData"] name:[fileDic objectForKey:@"fileKey"] fileName:[fileDic objectForKey:@"fileName"] mimeType:[fileDic objectForKey:@"fileMimeType"]];
+            
         } success:success failure:failure];
-
+        
     }];
     [operation setUploadProgressBlock:uploadProgress];
     return operation;
-
+    
 }
+#pragma mark - DownBreakResume
+
 - (AFHTTPRequestOperation *)GET:(NSString *)urlPath
                           param:(NSDictionary *)params
                        filePath:(NSString *)filePath
@@ -221,7 +224,7 @@ static PHNetWorkClient *__helper = nil;
     return operation;
 }
 
-#pragma mark 
+#pragma mark - NetworkState
 //监控网络变化
 - (void)startMonitorNetworkStateChange
 {
@@ -279,7 +282,7 @@ static PHNetWorkClient *__helper = nil;
     [reachabilityManager startMonitoring];
 }
 
-#pragma mark
+#pragma mark - urlCache
 //cache
 - (AFHTTPRequestOperation *)GET:(NSString *)urlPath
                           param:(NSDictionary *)params
