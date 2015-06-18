@@ -66,6 +66,63 @@ static PHNetWorkClient *__helper = nil;
     return __helper;
 }
 
+#pragma mark - NetworkState
+//监控网络变化
+- (void)startMonitorNetworkStateChange
+{
+    // 1.获得网络监控的管理者
+    AFNetworkReachabilityManager *reachabilityManager = __helper.reachabilityManager;
+    
+    NSOperationQueue *operationQueue = __helper.operationQueue;
+    // 2.设置网络状态改变后的处理
+    [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        // 当网络状态改变了, 就会调用这个block
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown: // 未知网络
+                PHLog(@"未知网络");
+                self.networkReachabilityStatus = PHNetworkReachabilityStatusUnknown;
+                [operationQueue setSuspended:YES];
+                
+                break;
+                
+            case AFNetworkReachabilityStatusNotReachable: // 没有网络(断网)
+                PHLog(@"没有网络(断网)");
+                self.networkReachabilityStatus = PHNetworkReachabilityStatusNotReachable;
+                
+                [operationQueue setSuspended:YES];
+                break;
+                
+            case AFNetworkReachabilityStatusReachableViaWWAN: // 手机自带网络
+                self.networkReachabilityStatus = PHNetworkReachabilityStatusReachableViaWWAN;
+                
+                if(self.wifiOnlyMode)
+                {
+                    operationQueue.maxConcurrentOperationCount = 0;
+                    [operationQueue setSuspended:YES];
+                    
+                }
+                else
+                {
+                    operationQueue.maxConcurrentOperationCount = 2;
+                    [operationQueue setSuspended:NO];
+                    
+                }
+                
+                PHLog(@"手机自带网络");
+                break;
+                
+            case AFNetworkReachabilityStatusReachableViaWiFi: // WIFI
+                self.networkReachabilityStatus = PHNetworkReachabilityStatusReachableViaWiFi;
+                operationQueue.maxConcurrentOperationCount = 6;
+                [operationQueue setSuspended:NO];
+                PHLog(@"WIFI");
+                break;
+        }
+    }];
+    
+    // 3.开始监控
+    [reachabilityManager startMonitoring];
+}
 
 #pragma mark -- Request Types
 - (AFHTTPRequestOperation *)GET:(NSString *)urlPath
@@ -113,7 +170,7 @@ static PHNetWorkClient *__helper = nil;
             break;
         case PHHttpRequestPut:
         {
-            return [__helper PUT:urlPath parameters:parameters success:success failure:false];
+            return [__helper PUT:urlPath parameters:parameters success:success failure:failure];
         }
             break;
 
@@ -224,65 +281,9 @@ static PHNetWorkClient *__helper = nil;
     return operation;
 }
 
-#pragma mark - NetworkState
-//监控网络变化
-- (void)startMonitorNetworkStateChange
-{
-    // 1.获得网络监控的管理者
-    AFNetworkReachabilityManager *reachabilityManager = __helper.reachabilityManager;
-    
-    NSOperationQueue *operationQueue = __helper.operationQueue;
-    // 2.设置网络状态改变后的处理
-    [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        // 当网络状态改变了, 就会调用这个block
-        switch (status) {
-            case AFNetworkReachabilityStatusUnknown: // 未知网络
-                PHLog(@"未知网络");
-                self.networkReachabilityStatus = PHNetworkReachabilityStatusUnknown;
-                [operationQueue setSuspended:YES];
-                
-                break;
-                
-            case AFNetworkReachabilityStatusNotReachable: // 没有网络(断网)
-                PHLog(@"没有网络(断网)");
-                self.networkReachabilityStatus = PHNetworkReachabilityStatusNotReachable;
-                
-                [operationQueue setSuspended:YES];
-                break;
-                
-            case AFNetworkReachabilityStatusReachableViaWWAN: // 手机自带网络
-                self.networkReachabilityStatus = PHNetworkReachabilityStatusReachableViaWWAN;
-                
-                if(self.wifiOnlyMode)
-                {
-                    operationQueue.maxConcurrentOperationCount = 0;
-                    [operationQueue setSuspended:YES];
-                    
-                }
-                else
-                {
-                    operationQueue.maxConcurrentOperationCount = 2;
-                    [operationQueue setSuspended:NO];
-                    
-                }
-                
-                PHLog(@"手机自带网络");
-                break;
-                
-            case AFNetworkReachabilityStatusReachableViaWiFi: // WIFI
-                self.networkReachabilityStatus = PHNetworkReachabilityStatusReachableViaWiFi;
-                operationQueue.maxConcurrentOperationCount = 6;
-                [operationQueue setSuspended:NO];
-                PHLog(@"WIFI");
-                break;
-        }
-    }];
-    
-    // 3.开始监控
-    [reachabilityManager startMonitoring];
-}
 
-#pragma mark - urlCache
+
+#pragma mark - UrlCache
 //cache
 - (AFHTTPRequestOperation *)GET:(NSString *)urlPath
                           param:(NSDictionary *)params
