@@ -135,15 +135,39 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
     return success;
 }
 
+//- (NSString *)tempPath {
+//    NSString *tempPath = nil;
+//    if (self.targetPath) {
+//        NSString *md5URLString = [[self class] md5StringForString:self.targetPath];
+//        tempPath = [[[self class] cacheFolder] stringByAppendingPathComponent:md5URLString];
+//    }
+//    return tempPath;
+//}
+
+//sevens begin
+
 - (NSString *)tempPath {
     NSString *tempPath = nil;
     if (self.targetPath) {
-        NSString *md5URLString = [[self class] md5StringForString:self.targetPath];
-        tempPath = [[[self class] cacheFolder] stringByAppendingPathComponent:md5URLString];
+
+        //8.0之后
+
+        if( [[[UIDevice currentDevice] systemVersion] compare:@"8.0"] != NSOrderedAscending )
+        {
+            tempPath = [[[self class] cacheFolder] stringByAppendingPathComponent:self.targetPath.lastPathComponent];
+
+        }
+        else
+        {
+            NSString *md5URLString = [[self class] md5StringForString:self.targetPath];
+            tempPath = [[[self class] cacheFolder] stringByAppendingPathComponent:md5URLString];
+        }
+
     }
     return tempPath;
 }
 
+//sevens end
 
 - (void)setProgressiveDownloadProgressBlock:(void (^)(AFDownloadRequestOperation *operation, NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile))block {
     self.progressiveDownloadProgress = block;
