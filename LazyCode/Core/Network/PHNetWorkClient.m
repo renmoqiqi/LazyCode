@@ -66,162 +66,7 @@ static PHNetWorkClient *__helper = nil;
     return __helper;
 }
 
-
-#pragma mark
-- (AFHTTPRequestOperation *)GET:(NSString *)urlPath
-                          param:(NSDictionary *)params
-                        success:(BlockHTTPRequestSuccess)success
-                        failure:(BlockHTTPRequestFailure)failure
-{
-
-    return [self requestWithPath:urlPath method:PHHttpRequestGet parameters:params success:success failure:failure];
-
-
-}
-
-- (AFHTTPRequestOperation *)POST:(NSString *)urlPath
-                           param:(NSDictionary *)params
-                         success:(BlockHTTPRequestSuccess)success
-                         failure:(BlockHTTPRequestFailure)failure
-{
-
-    return [self requestWithPath:urlPath method:PHHttpRequestPost parameters:params success:success failure:failure];
-
-}
-
-- (AFHTTPRequestOperation *)requestWithPath:(NSString *)urlPath
-                                     method:(PHHttpRequestType)requestType
-                                 parameters:(id)parameters
-                                    success:(BlockHTTPRequestSuccess)success
-                                    failure:(BlockHTTPRequestFailure)failure;
-{
-    switch (requestType) {
-        case PHHttpRequestGet:
-        {
-            return [__helper GET:urlPath parameters:parameters success:success failure:failure];
-        }
-            break;
-        case PHHttpRequestPost:
-        {
-            return [__helper POST:urlPath parameters:parameters success:success failure:failure];
-        }
-            break;
-        case PHHttpRequestDelete:
-        {
-            return [__helper DELETE:urlPath parameters:parameters success:success failure:failure];
-        }
-            break;
-        case PHHttpRequestPut:
-        {
-            return [__helper PUT:urlPath parameters:parameters success:success failure:false];
-        }
-            break;
-
-        default:
-            break;
-
-    }
-}
-#pragma mark
-
-#pragma mark
-- (void)callAllOperations
-{
-    [__helper.operationQueue cancelAllOperations];
-}
-- (void)cancelHTTPOperationsWithMethod:(NSString *)method url:(NSString *)url
-{
-    if ([url length]==0) {
-        return;
-    }
-    NSError *error;
-    NSString *uRLString;
-    if ([[[NSURL URLWithString:url]scheme] length] != 0)
-    {
-        uRLString = [[NSURL URLWithString:url] absoluteString];
-    }
-    else
-    {
-        uRLString = [[NSURL URLWithString:[[[self class] baseUrl] stringByAppendingString:url]] absoluteString];
-        
-    }
-    NSString *pathToBeMatched = [[[__helper.requestSerializer requestWithMethod:method URLString:uRLString parameters:nil error:&error] URL] path];
-    
-    for (NSOperation *operation in [__helper.operationQueue operations]) {
-        if (![operation isKindOfClass:[AFHTTPRequestOperation class]]) {
-            continue;
-        }
-        BOOL hasMatchingMethod = !method || [method  isEqualToString:[[(AFHTTPRequestOperation *)operation request] HTTPMethod]];
-        BOOL hasMatchingPath = [[[[(AFHTTPRequestOperation *)operation request] URL] path] isEqual:pathToBeMatched];
-        
-        if (hasMatchingMethod && hasMatchingPath) {
-            [operation cancel];
-        }
-    }
-}
-#pragma mark
-- (AFHTTPRequestOperation *)POST:(NSString *)urlPath
-                           param:(NSDictionary *)params
-                            file:(NSData *)file
-                         formKey:(NSString *)formKey
-                       imageName:(NSString *)imageName
-                  uploadProgress:(BlockHTTPRequestUploadProgress)uploadProgress
-                         success:(BlockHTTPRequestSuccess)success
-                         failure:(BlockHTTPRequestFailure)failure
-{
-    AFHTTPRequestOperation *operation;
-    operation = [__helper POST:urlPath parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:file name:formKey fileName:imageName mimeType:@"image/png"];
-
-    } success:success failure:failure];
-
-    [operation setUploadProgressBlock:uploadProgress];
-    return operation;
-}
-- (AFHTTPRequestOperation *)POST:(NSString *)urlPath
-                           param:(NSDictionary *)params
-                  fileDictionary:(NSDictionary *)fileDictionary
-                  uploadProgress:(BlockHTTPRequestUploadProgress)uploadProgress
-                         success:(BlockHTTPRequestSuccess)success
-                         failure:(BlockHTTPRequestFailure)failure
-{
-    __block  AFHTTPRequestOperation *operation;
-    NSArray *imageKeyArray = params.allKeys;
-    [imageKeyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        operation = [__helper POST:urlPath parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-            [formData appendPartWithFileData:fileDictionary[obj] name:obj fileName:[NSString stringWithFormat:@"%dImage",idx] mimeType:@"image/png"];
-
-        } success:success failure:failure];
-
-    }];
-    [operation setUploadProgressBlock:uploadProgress];
-    return operation;
-
-}
-- (AFHTTPRequestOperation *)GET:(NSString *)urlPath
-                          param:(NSDictionary *)params
-                       filePath:(NSString *)filePath
-                   shouldResume:(BOOL)shouldResume
-               downloadProgress:(AFDownloadProgressBlock)downloadProgress
-                        success:(BlockHTTPRequestSuccess)success
-                        failure:(BlockHTTPRequestFailure)failure;
-{
-
-    // add parameters to URL;
-    NSString *filteredUrl = [NSString urlStringWithOriginUrlString:urlPath appendParameters:params];
-
-    NSURLRequest *requestUrl = [NSURLRequest requestWithURL:[NSURL URLWithString:filteredUrl]];
-
-    AFDownloadRequestOperation *operation = [[AFDownloadRequestOperation alloc] initWithRequest:requestUrl
-                                                                                     targetPath:filePath shouldResume:shouldResume];
-    [operation setProgressiveDownloadProgressBlock:downloadProgress];
-    [operation setCompletionBlockWithSuccess:success failure:failure];
-
-    [__helper.operationQueue addOperation:operation];
-    return operation;
-}
-
-#pragma mark 
+#pragma mark - NetworkState
 //监控网络变化
 - (void)startMonitorNetworkStateChange
 {
@@ -279,7 +124,166 @@ static PHNetWorkClient *__helper = nil;
     [reachabilityManager startMonitoring];
 }
 
-#pragma mark
+#pragma mark -- Request Types
+- (AFHTTPRequestOperation *)GET:(NSString *)urlPath
+                          param:(NSDictionary *)params
+                        success:(BlockHTTPRequestSuccess)success
+                        failure:(BlockHTTPRequestFailure)failure
+{
+
+    return [self requestWithPath:urlPath method:PHHttpRequestGet parameters:params success:success failure:failure];
+
+
+}
+
+- (AFHTTPRequestOperation *)POST:(NSString *)urlPath
+                           param:(NSDictionary *)params
+                         success:(BlockHTTPRequestSuccess)success
+                         failure:(BlockHTTPRequestFailure)failure
+{
+
+    return [self requestWithPath:urlPath method:PHHttpRequestPost parameters:params success:success failure:failure];
+
+}
+
+- (AFHTTPRequestOperation *)requestWithPath:(NSString *)urlPath
+                                     method:(PHHttpRequestType)requestType
+                                 parameters:(id)parameters
+                                    success:(BlockHTTPRequestSuccess)success
+                                    failure:(BlockHTTPRequestFailure)failure;
+{
+    switch (requestType) {
+        case PHHttpRequestGet:
+        {
+            return [__helper GET:urlPath parameters:parameters success:success failure:failure];
+        }
+            break;
+        case PHHttpRequestPost:
+        {
+            return [__helper POST:urlPath parameters:parameters success:success failure:failure];
+        }
+            break;
+        case PHHttpRequestDelete:
+        {
+            return [__helper DELETE:urlPath parameters:parameters success:success failure:failure];
+        }
+            break;
+        case PHHttpRequestPut:
+        {
+            return [__helper PUT:urlPath parameters:parameters success:success failure:failure];
+        }
+            break;
+
+        default:
+            break;
+
+    }
+}
+
+#pragma mark - Cancel Opration
+- (void)callAllOperations
+{
+    [__helper.operationQueue cancelAllOperations];
+}
+- (void)cancelHTTPOperationsWithMethod:(NSString *)method url:(NSString *)url
+{
+    if ([url length]==0) {
+        return;
+    }
+    NSError *error;
+    NSString *uRLString;
+    if ([[[NSURL URLWithString:url]scheme] length] != 0)
+    {
+        uRLString = [[NSURL URLWithString:url] absoluteString];
+    }
+    else
+    {
+        uRLString = [[NSURL URLWithString:[[[self class] baseUrl] stringByAppendingString:url]] absoluteString];
+        
+    }
+    NSString *pathToBeMatched = [[[__helper.requestSerializer requestWithMethod:method URLString:uRLString parameters:nil error:&error] URL] path];
+    
+    for (NSOperation *operation in [__helper.operationQueue operations]) {
+        if (![operation isKindOfClass:[AFHTTPRequestOperation class]]) {
+            continue;
+        }
+        BOOL hasMatchingMethod = !method || [method  isEqualToString:[[(AFHTTPRequestOperation *)operation request] HTTPMethod]];
+        BOOL hasMatchingPath = [[[[(AFHTTPRequestOperation *)operation request] URL] path] isEqual:pathToBeMatched];
+        
+        if (hasMatchingMethod && hasMatchingPath) {
+            [operation cancel];
+        }
+    }
+}
+#pragma mark -- Post Files
+- (AFHTTPRequestOperation *)POST:(NSString *)urlPath
+                           param:(NSDictionary *)params
+                            file:(NSData *)file
+                         fileKey:(NSString *)fileKey
+                        fileName:(NSString *)fileName
+                    fileMimeType:(NSString *)fileMimeType
+                  uploadProgress:(BlockHTTPRequestUploadProgress)uploadProgress
+                         success:(BlockHTTPRequestSuccess)success
+                         failure:(BlockHTTPRequestFailure)failure
+{
+    AFHTTPRequestOperation *operation;
+    operation = [__helper POST:urlPath parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:file name:fileKey fileName:fileName mimeType:fileMimeType];
+        
+    } success:success failure:failure];
+    
+    [operation setUploadProgressBlock:uploadProgress];
+    return operation;
+}
+- (AFHTTPRequestOperation *)POST:(NSString *)urlPath
+                           param:(NSDictionary *)params
+                       fileArray:(NSArray *)fileArray
+                  uploadProgress:(BlockHTTPRequestUploadProgress)uploadProgress
+                         success:(BlockHTTPRequestSuccess)success
+                         failure:(BlockHTTPRequestFailure)failure
+{
+    __block  AFHTTPRequestOperation *operation;
+    
+    [fileArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        operation = [__helper POST:urlPath parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            NSDictionary *fileDic = obj;
+            [formData appendPartWithFileData:[fileDic objectForKey:@"fileData"] name:[fileDic objectForKey:@"fileKey"] fileName:[fileDic objectForKey:@"fileName"] mimeType:[fileDic objectForKey:@"fileMimeType"]];
+            
+        } success:success failure:failure];
+        
+    }];
+    [operation setUploadProgressBlock:uploadProgress];
+    return operation;
+    
+}
+#pragma mark - DownBreakResume
+
+- (AFHTTPRequestOperation *)GET:(NSString *)urlPath
+                          param:(NSDictionary *)params
+                       filePath:(NSString *)filePath
+                   shouldResume:(BOOL)shouldResume
+               downloadProgress:(AFDownloadProgressBlock)downloadProgress
+                        success:(BlockHTTPRequestSuccess)success
+                        failure:(BlockHTTPRequestFailure)failure;
+{
+
+    // add parameters to URL;
+    NSString *filteredUrl = [NSString urlStringWithOriginUrlString:urlPath appendParameters:params];
+
+    NSURLRequest *requestUrl = [NSURLRequest requestWithURL:[NSURL URLWithString:filteredUrl]];
+
+    AFDownloadRequestOperation *operation = [[AFDownloadRequestOperation alloc] initWithRequest:requestUrl
+                                                                                     targetPath:filePath shouldResume:shouldResume];
+    [operation setProgressiveDownloadProgressBlock:downloadProgress];
+    [operation setCompletionBlockWithSuccess:success failure:failure];
+
+    [__helper.operationQueue addOperation:operation];
+    return operation;
+}
+
+
+
+#pragma mark - UrlCache
 //cache
 - (AFHTTPRequestOperation *)GET:(NSString *)urlPath
                           param:(NSDictionary *)params

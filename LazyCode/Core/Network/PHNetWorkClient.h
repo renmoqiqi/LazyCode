@@ -10,6 +10,8 @@
 #import "AFNetworking.h"
 @class AFDownloadRequestOperation;
 
+#pragma mark - Enumerations
+
 //几种请求方式
 typedef NS_ENUM(NSInteger, PHHttpRequestType) {
     PHHttpRequestGet,
@@ -46,7 +48,7 @@ typedef enum : NSUInteger {
     URLCachePolicyReturnCacheDataAndRequestNetwork,
 
 }PHURLCachePolicy;
-#pragma mark - block
+#pragma mark - Block
 
 /**
  *  HTTP/HTTPs succeed block
@@ -78,6 +80,9 @@ typedef void (^BlockHTTPRequestUploadProgress)(NSUInteger bytesWritten, long lon
 
 @interface PHNetWorkClient : AFHTTPRequestOperationManager
 
+#pragma mark - Properties
+
+
 //请求超时时间
 @property (nonatomic, assign) NSTimeInterval requestTimeoutInterval;
 
@@ -98,6 +103,9 @@ typedef void (^BlockHTTPRequestUploadProgress)(NSUInteger bytesWritten, long lon
 //监控网络启动
 - (void)startMonitorNetworkStateChange;
 
+#pragma mark - Cancel Opration
+
+
 //取消所有网络请求
 - (void)callAllOperations;
 /**
@@ -107,7 +115,7 @@ typedef void (^BlockHTTPRequestUploadProgress)(NSUInteger bytesWritten, long lon
  *  @param url                   要取消的 url
  */
 - (void)cancelHTTPOperationsWithMethod:(NSString *)method url:(NSString *)url;
-#pragma mark
+#pragma mark - Request types
 
 /**
  *  封装的GET请求
@@ -155,7 +163,7 @@ typedef void (^BlockHTTPRequestUploadProgress)(NSUInteger bytesWritten, long lon
                 success:(BlockHTTPRequestSuccess)success
                 failure:(BlockHTTPRequestFailure)failure;
 
-#pragma mark
+#pragma mark - Post Files
 
 /**
  *  封装的POST请求,可以监控到上传文件的进度
@@ -163,8 +171,9 @@ typedef void (^BlockHTTPRequestUploadProgress)(NSUInteger bytesWritten, long lon
  *  @param urlPath            请求的urlPath
  *  @param uploadProgress     上传进度回调
  *  @param file               二进制文件
- *  @param formKey            图片key
- *  @param imageName          图片名字
+ *  @param fileKey            文件key
+ *  @param fileName          文件原始名字
+ *  @param fileMimeType      文件类型
  *  @param success            成功回调
  *  @param failure            失败回调
  *
@@ -173,8 +182,9 @@ typedef void (^BlockHTTPRequestUploadProgress)(NSUInteger bytesWritten, long lon
 - (AFHTTPRequestOperation *)POST:(NSString *)urlPath
                            param:(NSDictionary *)params
                             file:(NSData *)file
-                         formKey:(NSString *)formKey
-                       imageName:(NSString *)imageName
+                         fileKey:(NSString *)fileKey
+                        fileName:(NSString *)fileName
+                    fileMimeType:(NSString *)fileMimeType
                   uploadProgress:(BlockHTTPRequestUploadProgress)uploadProgress
                          success:(BlockHTTPRequestSuccess)success
                          failure:(BlockHTTPRequestFailure)failure;
@@ -184,7 +194,7 @@ typedef void (^BlockHTTPRequestUploadProgress)(NSUInteger bytesWritten, long lon
  *
  *  @param urlPath            请求的urlPath
  *  @param uploadProgress     上传进度回调
- *  @param fileDictionary     key 是 imageKey value 是图片二进制文件
+ *  @param fileDictionary     一个文件字典 fileData图片二进制数据 fileName 图片原始名字 fileMimeType 文件类型 fileKey 文件对应服务器的key
  *  @param success            成功回调
  *  @param failure            失败回调
  *
@@ -192,12 +202,12 @@ typedef void (^BlockHTTPRequestUploadProgress)(NSUInteger bytesWritten, long lon
  */
 - (AFHTTPRequestOperation *)POST:(NSString *)urlPath
                            param:(NSDictionary *)params
-                  fileDictionary:(NSDictionary *)fileDictionary
+                       fileArray:(NSArray *)fileArray
                   uploadProgress:(BlockHTTPRequestUploadProgress)uploadProgress
                          success:(BlockHTTPRequestSuccess)success
                          failure:(BlockHTTPRequestFailure)failure;
 
-#pragma mark
+#pragma mark - DownBreakResume
 /**
  *  封装的GET请求,可以监控下载文件的进度
  *
@@ -221,7 +231,7 @@ typedef void (^BlockHTTPRequestUploadProgress)(NSUInteger bytesWritten, long lon
 
 
 // http cache  url as keys 需要服务器支持http1.1缓存规范
-#pragma mark  
+#pragma mark - urlCache
 
 /**
  *  GET类型请求 缓存
